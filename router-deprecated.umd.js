@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-6e62217
+ * @license AngularJS v2.0.0-0894318
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1232,7 +1232,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         /** @internal */
         Instruction.prototype._stringifyPathMatrixAux = function () {
-            if (isBlank(this.component)) {
+            if (isBlank(this.component) && isBlank(this.urlPath)) {
                 return '';
             }
             return this.urlPath + this._stringifyMatrixParams() + this._stringifyAux();

@@ -174,7 +174,7 @@ export class Instruction {
     }
     /** @internal */
     _stringifyPathMatrixAux() {
-        if (isBlank(this.component)) {
+        if (isBlank(this.component) && isBlank(this.urlPath)) {
             return '';
         }
         return this.urlPath + this._stringifyMatrixParams() + this._stringifyAux();

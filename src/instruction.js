@@ -197,7 +197,7 @@ var Instruction = (function () {
     };
     /** @internal */
     Instruction.prototype._stringifyPathMatrixAux = function () {
-        if (lang_1.isBlank(this.component)) {
+        if (lang_1.isBlank(this.component) && lang_1.isBlank(this.urlPath)) {
             return '';
         }
         return this.urlPath + this._stringifyMatrixParams() + this._stringifyAux();

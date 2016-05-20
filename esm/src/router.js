@@ -18,6 +18,7 @@ import { Location } from '@angular/common';
 import { RouteRegistry, ROUTER_PRIMARY_COMPONENT } from './route_registry';
 import { getCanActivateHook } from './lifecycle/route_lifecycle_reflector';
 import { Injectable, Inject } from '@angular/core';
+import { DefaultInstruction } from "./instruction";
 let _resolveToTrue = PromiseWrapper.resolve(true);
 let _resolveToFalse = PromiseWrapper.resolve(false);
 /**
@@ -120,7 +121,8 @@ export let Router = class Router {
      */
     isRouteActive(instruction) {
         var router = this;
-        if (isBlank(this.currentInstruction)) {
+        var currentInstruction = this.currentInstruction;
+        if (isBlank(currentInstruction)) {
             return false;
         }
         // `instruction` corresponds to the root router
@@ -128,19 +130,26 @@ export let Router = class Router {
             router = router.parent;
             instruction = instruction.child;
         }
-        if (isBlank(instruction.component) || isBlank(this.currentInstruction.component) ||
-            this.currentInstruction.component.routeName != instruction.component.routeName) {
-            return false;
-        }
-        let paramEquals = true;
-        if (isPresent(this.currentInstruction.component.params)) {
-            StringMapWrapper.forEach(instruction.component.params, (value, key) => {
-                if (this.currentInstruction.component.params[key] !== value) {
-                    paramEquals = false;
-                }
-            });
-        }
-        return paramEquals;
+        let reason = true;
+        // check the instructions in depth
+        do {
+            if (isBlank(instruction.component) || isBlank(currentInstruction.component) ||
+                currentInstruction.component.routeName != instruction.component.routeName) {
+                return false;
+            }
+            if (isPresent(instruction.component.params)) {
+                StringMapWrapper.forEach(instruction.component.params, (value, key) => {
+                    if (currentInstruction.component.params[key] !== value) {
+                        reason = false;
+                    }
+                });
+            }
+            currentInstruction = currentInstruction.child;
+            instruction = instruction.child;
+        } while (isPresent(currentInstruction) && isPresent(instruction) &&
+            !(instruction instanceof DefaultInstruction) && reason);
+        // ignore DefaultInstruction
+        return reason && (isBlank(instruction) || instruction instanceof DefaultInstruction);
     }
     /**
      * Dynamically update the routing configuration and trigger a navigation.

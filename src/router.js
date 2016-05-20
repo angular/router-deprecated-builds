@@ -24,6 +24,7 @@ var common_1 = require('@angular/common');
 var route_registry_1 = require('./route_registry');
 var route_lifecycle_reflector_1 = require('./lifecycle/route_lifecycle_reflector');
 var core_1 = require('@angular/core');
+var instruction_1 = require("./instruction");
 var _resolveToTrue = async_1.PromiseWrapper.resolve(true);
 var _resolveToFalse = async_1.PromiseWrapper.resolve(false);
 /**
@@ -125,9 +126,9 @@ var Router = (function () {
      * otherwise `false`.
      */
     Router.prototype.isRouteActive = function (instruction) {
-        var _this = this;
         var router = this;
-        if (lang_1.isBlank(this.currentInstruction)) {
+        var currentInstruction = this.currentInstruction;
+        if (lang_1.isBlank(currentInstruction)) {
             return false;
         }
         // `instruction` corresponds to the root router
@@ -135,19 +136,26 @@ var Router = (function () {
             router = router.parent;
             instruction = instruction.child;
         }
-        if (lang_1.isBlank(instruction.component) || lang_1.isBlank(this.currentInstruction.component) ||
-            this.currentInstruction.component.routeName != instruction.component.routeName) {
-            return false;
-        }
-        var paramEquals = true;
-        if (lang_1.isPresent(this.currentInstruction.component.params)) {
-            collection_1.StringMapWrapper.forEach(instruction.component.params, function (value, key) {
-                if (_this.currentInstruction.component.params[key] !== value) {
-                    paramEquals = false;
-                }
-            });
-        }
-        return paramEquals;
+        var reason = true;
+        // check the instructions in depth
+        do {
+            if (lang_1.isBlank(instruction.component) || lang_1.isBlank(currentInstruction.component) ||
+                currentInstruction.component.routeName != instruction.component.routeName) {
+                return false;
+            }
+            if (lang_1.isPresent(instruction.component.params)) {
+                collection_1.StringMapWrapper.forEach(instruction.component.params, function (value, key) {
+                    if (currentInstruction.component.params[key] !== value) {
+                        reason = false;
+                    }
+                });
+            }
+            currentInstruction = currentInstruction.child;
+            instruction = instruction.child;
+        } while (lang_1.isPresent(currentInstruction) && lang_1.isPresent(instruction) &&
+            !(instruction instanceof instruction_1.DefaultInstruction) && reason);
+        // ignore DefaultInstruction
+        return reason && (lang_1.isBlank(instruction) || instruction instanceof instruction_1.DefaultInstruction);
     };
     /**
      * Dynamically update the routing configuration and trigger a navigation.

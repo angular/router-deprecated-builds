@@ -9,6 +9,7 @@ function __export(m) {
 }
 var router_1 = require('./src/router');
 exports.Router = router_1.Router;
+exports.RootRouter = router_1.RootRouter;
 var router_outlet_1 = require('./src/directives/router_outlet');
 exports.RouterOutlet = router_outlet_1.RouterOutlet;
 var router_link_1 = require('./src/directives/router_link');

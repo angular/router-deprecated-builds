@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-595bcdd
+ * @license AngularJS v2.0.0-55921be
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -2989,7 +2989,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         _angular_core.Injectable(),
         __metadata('design:paramtypes', [exports.RouteRegistry, exports.Router, Object, exports.Router])
     ], exports.Router);
-    var RootRouter = (function (_super) {
+    exports.RootRouter = (function (_super) {
         __extends(RootRouter, _super);
         function RootRouter(registry, location, primaryComponent) {
             var _this = this;
@@ -3059,11 +3059,11 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         return RootRouter;
     }(exports.Router));
-    RootRouter = __decorate([
+    exports.RootRouter = __decorate([
         _angular_core.Injectable(),
         __param(2, _angular_core.Inject(ROUTER_PRIMARY_COMPONENT)),
         __metadata('design:paramtypes', [exports.RouteRegistry, _angular_common.Location, Type$1])
-    ], RootRouter);
+    ], exports.RootRouter);
     var ChildRouter = (function (_super) {
         __extends(ChildRouter, _super);
         function ChildRouter(parent, hostComponent) {
@@ -3414,7 +3414,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         }
     ];
     function routerFactory(registry, location, primaryComponent, appRef) {
-        var rootRouter = new RootRouter(registry, location, primaryComponent);
+        var rootRouter = new exports.RootRouter(registry, location, primaryComponent);
         appRef.registerDisposeListener(function () { return rootRouter.dispose(); });
         return rootRouter;
     }

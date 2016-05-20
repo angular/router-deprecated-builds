@@ -3,7 +3,7 @@
  * @description
  * Maps application URLs into application states, to support deep-linking and navigation.
  */
-export { Router } from './src/router';
+export { Router, RootRouter } from './src/router';
 export { RouterOutlet } from './src/directives/router_outlet';
 export { RouterLink } from './src/directives/router_link';
 export { RouteParams, RouteData } from './src/instruction';

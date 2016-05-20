@@ -492,7 +492,12 @@ var RootRouter = (function (_super) {
         }
         var promise = _super.prototype.commit.call(this, instruction);
         if (!_skipLocationChange) {
-            promise = promise.then(function (_) { _this._location.go(emitPath, emitQuery); });
+            if (this._location.isCurrentPathEqualTo(emitPath, emitQuery)) {
+                promise = promise.then(function (_) { _this._location.replaceState(emitPath, emitQuery); });
+            }
+            else {
+                promise = promise.then(function (_) { _this._location.go(emitPath, emitQuery); });
+            }
         }
         return promise;
     };

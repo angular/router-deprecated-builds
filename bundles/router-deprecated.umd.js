@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-165357b
+ * @license AngularJS v2.0.0-2bf21e1
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -3054,7 +3054,12 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
             var promise = _super.prototype.commit.call(this, instruction);
             if (!_skipLocationChange) {
-                promise = promise.then(function (_) { _this._location.go(emitPath, emitQuery); });
+                if (this._location.isCurrentPathEqualTo(emitPath, emitQuery)) {
+                    promise = promise.then(function (_) { _this._location.replaceState(emitPath, emitQuery); });
+                }
+                else {
+                    promise = promise.then(function (_) { _this._location.go(emitPath, emitQuery); });
+                }
             }
             return promise;
         };

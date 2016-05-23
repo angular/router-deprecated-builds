@@ -95,10 +95,10 @@ var ParamRoutePath = (function () {
         var captured = [];
         for (var i = 0; i < this._segments.length; i += 1) {
             var pathSegment = this._segments[i];
-            currentUrlSegment = nextUrlSegment;
             if (pathSegment instanceof ContinuationPathSegment) {
                 break;
             }
+            currentUrlSegment = nextUrlSegment;
             if (lang_1.isPresent(currentUrlSegment)) {
                 // the star segment consumes all of the remaining URL, including matrix params
                 if (pathSegment instanceof StarPathSegment) {

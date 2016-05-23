@@ -34,7 +34,7 @@ var RuleSet = (function () {
         var handler;
         if (lang_1.isPresent(config.name) && config.name[0].toUpperCase() != config.name[0]) {
             var suggestedName = config.name[0].toUpperCase() + config.name.substring(1);
-            throw new exceptions_1.BaseException("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be CamelCase like \"" + suggestedName + "\".");
+            throw new exceptions_1.BaseException("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be PascalCase like \"" + suggestedName + "\".");
         }
         if (config instanceof route_config_impl_1.AuxRoute) {
             handler = new sync_route_handler_1.SyncRouteHandler(config.component, config.data);

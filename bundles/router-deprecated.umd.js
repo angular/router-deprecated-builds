@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-ac6959c
+ * @license AngularJS v2.0.0-9c2fe66
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1645,10 +1645,10 @@ var __extends = (this && this.__extends) || function (d, b) {
             var captured = [];
             for (var i = 0; i < this._segments.length; i += 1) {
                 var pathSegment = this._segments[i];
-                currentUrlSegment = nextUrlSegment;
                 if (pathSegment instanceof ContinuationPathSegment) {
                     break;
                 }
+                currentUrlSegment = nextUrlSegment;
                 if (isPresent(currentUrlSegment)) {
                     // the star segment consumes all of the remaining URL, including matrix params
                     if (pathSegment instanceof StarPathSegment) {
@@ -1864,7 +1864,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             var handler;
             if (isPresent(config.name) && config.name[0].toUpperCase() != config.name[0]) {
                 var suggestedName = config.name[0].toUpperCase() + config.name.substring(1);
-                throw new BaseException("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be CamelCase like \"" + suggestedName + "\".");
+                throw new BaseException("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be PascalCase like \"" + suggestedName + "\".");
             }
             if (config instanceof AuxRoute) {
                 handler = new SyncRouteHandler(config.component, config.data);

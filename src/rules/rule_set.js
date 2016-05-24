@@ -132,7 +132,7 @@ var RuleSet = (function () {
     RuleSet.prototype._getRoutePath = function (config) {
         if (lang_1.isPresent(config.regex)) {
             if (lang_1.isFunction(config.serializer)) {
-                return new regex_route_path_1.RegexRoutePath(config.regex, config.serializer);
+                return new regex_route_path_1.RegexRoutePath(config.regex, config.serializer, config.regex_group_names);
             }
             else {
                 throw new exceptions_1.BaseException("Route provides a regex property, '" + config.regex + "', but no serializer property");

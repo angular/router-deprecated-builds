@@ -131,7 +131,7 @@ export class RuleSet {
     _getRoutePath(config) {
         if (isPresent(config.regex)) {
             if (isFunction(config.serializer)) {
-                return new RegexRoutePath(config.regex, config.serializer);
+                return new RegexRoutePath(config.regex, config.serializer, config.regex_group_names);
             }
             else {
                 throw new BaseException(`Route provides a regex property, '${config.regex}', but no serializer property`);

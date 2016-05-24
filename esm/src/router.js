@@ -245,16 +245,20 @@ export let Router = class Router {
                 if (result) {
                     return this.commit(instruction, _skipLocationChange)
                         .then((_) => {
-                        this._emitNavigationFinish(instruction.toRootUrl());
+                        this._emitNavigationFinish(instruction.component);
                         return true;
                     });
                 }
             });
         });
     }
-    _emitNavigationFinish(url) { ObservableWrapper.callEmit(this._subject, url); }
+    _emitNavigationFinish(instruction) {
+        ObservableWrapper.callEmit(this._subject, { status: 'success', instruction });
+    }
     /** @internal */
-    _emitNavigationFail(url) { ObservableWrapper.callError(this._subject, url); }
+    _emitNavigationFail(url) {
+        ObservableWrapper.callEmit(this._subject, { status: 'fail', url });
+    }
     _afterPromiseFinishNavigating(promise) {
         return PromiseWrapper.catchError(promise.then((_) => this._finishNavigating()), (err) => {
             this._finishNavigating();

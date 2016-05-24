@@ -26,12 +26,6 @@ function normalizeRouteConfig(config, registry) {
     if ((+!!config.component) + (+!!config.redirectTo) + (+!!config.loader) != 1) {
         throw new exceptions_1.BaseException("Route config should contain exactly one \"component\", \"loader\", or \"redirectTo\" property.");
     }
-    if (config.as && config.name) {
-        throw new exceptions_1.BaseException("Route config should contain exactly one \"as\" or \"name\" property.");
-    }
-    if (config.as) {
-        config.name = config.as;
-    }
     if (config.loader) {
         var wrappedLoader = wrapLoaderToReconfigureRegistry(config.loader, registry);
         return new route_config_decorator_1.AsyncRoute({

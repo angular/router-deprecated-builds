@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-c43636f
+ * @license AngularJS v2.0.0-0f0a8ad
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -294,7 +294,13 @@ var __extends = (this && this.__extends) || function (d, b) {
      * }
      * ```
      *
-     * Use Rx.Observable but provides an adapter to make it work as specified here:
+     * The events payload can be accessed by the parameter `$event` on the components output event handler:
+     *
+     * ```
+     * <zippy (open)="onOpen($event)" (close)="onClose($event)"></zippy>
+     * ```
+     *
+     * Uses Rx.Observable but provides an adapter to make it work as specified here:
      * https://github.com/jhusain/observable-spec
      *
      * Once a reference implementation of the spec is available, switch to it.
@@ -639,16 +645,16 @@ var __extends = (this && this.__extends) || function (d, b) {
             };
         }
     })();
-    var BaseException = (function (_super) {
-        __extends(BaseException, _super);
-        function BaseException(message) {
+    var BaseException$1 = (function (_super) {
+        __extends(BaseException$1, _super);
+        function BaseException$1(message) {
             if (message === void 0) { message = "--"; }
             _super.call(this, message);
             this.message = message;
             this.stack = (new Error(message)).stack;
         }
-        BaseException.prototype.toString = function () { return this.message; };
-        return BaseException;
+        BaseException$1.prototype.toString = function () { return this.message; };
+        return BaseException$1;
     }(Error));
     /**
      * The `RouteConfig` decorator defines routes for a given component.
@@ -665,11 +671,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     /* @ts2dart_const */
     var AbstractRoute = (function () {
         function AbstractRoute(_a) {
-            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, serializer = _a.serializer, data = _a.data;
+            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data;
             this.name = name;
             this.useAsDefault = useAsDefault;
             this.path = path;
             this.regex = regex;
+            this.regex_group_names = regex_group_names;
             this.serializer = serializer;
             this.data = data;
         }
@@ -701,12 +708,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     var Route = (function (_super) {
         __extends(Route, _super);
         function Route(_a) {
-            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, serializer = _a.serializer, data = _a.data, component = _a.component;
+            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data, component = _a.component;
             _super.call(this, {
                 name: name,
                 useAsDefault: useAsDefault,
                 path: path,
                 regex: regex,
+                regex_group_names: regex_group_names,
                 serializer: serializer,
                 data: data
             });
@@ -739,12 +747,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     var AuxRoute = (function (_super) {
         __extends(AuxRoute, _super);
         function AuxRoute(_a) {
-            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, serializer = _a.serializer, data = _a.data, component = _a.component;
+            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data, component = _a.component;
             _super.call(this, {
                 name: name,
                 useAsDefault: useAsDefault,
                 path: path,
                 regex: regex,
+                regex_group_names: regex_group_names,
                 serializer: serializer,
                 data: data
             });
@@ -780,12 +789,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     var AsyncRoute = (function (_super) {
         __extends(AsyncRoute, _super);
         function AsyncRoute(_a) {
-            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, serializer = _a.serializer, data = _a.data, loader = _a.loader;
+            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data, loader = _a.loader;
             _super.call(this, {
                 name: name,
                 useAsDefault: useAsDefault,
                 path: path,
                 regex: regex,
+                regex_group_names: regex_group_names,
                 serializer: serializer,
                 data: data
             });
@@ -819,12 +829,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     var Redirect = (function (_super) {
         __extends(Redirect, _super);
         function Redirect(_a) {
-            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, serializer = _a.serializer, data = _a.data, redirectTo = _a.redirectTo;
+            var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data, redirectTo = _a.redirectTo;
             _super.call(this, {
                 name: name,
                 useAsDefault: useAsDefault,
                 path: path,
                 regex: regex,
+                regex_group_names: regex_group_names,
                 serializer: serializer,
                 data: data
             });
@@ -915,7 +926,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         UrlParser.prototype.peekStartsWith = function (str) { return this._remaining.startsWith(str); };
         UrlParser.prototype.capture = function (str) {
             if (!this._remaining.startsWith(str)) {
-                throw new BaseException("Expected \"" + str + "\".");
+                throw new BaseException$1("Expected \"" + str + "\".");
             }
             this._remaining = this._remaining.substring(str.length);
         };
@@ -1403,7 +1414,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         }
         Object.defineProperty(RedirectRule.prototype, "path", {
             get: function () { return this._pathRecognizer.toString(); },
-            set: function (val) { throw new BaseException('you cannot set the path of a RedirectRule directly'); },
+            set: function (val) { throw new BaseException$1('you cannot set the path of a RedirectRule directly'); },
             enumerable: true,
             configurable: true
         });
@@ -1418,7 +1429,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             return PromiseWrapper.resolve(match);
         };
         RedirectRule.prototype.generate = function (params) {
-            throw new BaseException("Tried to generate a redirect.");
+            throw new BaseException$1("Tried to generate a redirect.");
         };
         return RedirectRule;
     }());
@@ -1436,7 +1447,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         }
         Object.defineProperty(RouteRule.prototype, "path", {
             get: function () { return this._routePath.toString(); },
-            set: function (val) { throw new BaseException('you cannot set the path of a RouteRule directly'); },
+            set: function (val) { throw new BaseException$1('you cannot set the path of a RouteRule directly'); },
             enumerable: true,
             configurable: true
         });
@@ -1462,7 +1473,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         RouteRule.prototype._getInstruction = function (urlPath, urlParams, params) {
             if (isBlank(this.handler.componentType)) {
-                throw new BaseException("Tried to get instruction before the type was loaded.");
+                throw new BaseException$1("Tried to get instruction before the type was loaded.");
             }
             var hashKey = urlPath + '?' + urlParams.join('&');
             if (this._cache.has(hashKey)) {
@@ -1598,7 +1609,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         DynamicPathSegment.prototype.match = function (path) { return path.length > 0; };
         DynamicPathSegment.prototype.generate = function (params) {
             if (!StringMapWrapper.contains(params.map, this.name)) {
-                throw new BaseException("Route generator for '" + this.name + "' was not included in parameters passed.");
+                throw new BaseException$1("Route generator for '" + this.name + "' was not included in parameters passed.");
             }
             return encodeDynamicSegment(normalizeString(params.get(this.name)));
         };
@@ -1725,7 +1736,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 }
                 else if (segment == '...') {
                     if (i < limit) {
-                        throw new BaseException("Unexpected \"...\" before the end of the path for \"" + routePath + "\".");
+                        throw new BaseException$1("Unexpected \"...\" before the end of the path for \"" + routePath + "\".");
                     }
                     this._segments.push(new ContinuationPathSegment());
                 }
@@ -1771,11 +1782,11 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         ParamRoutePath.prototype._assertValidPath = function (path) {
             if (StringWrapper.contains(path, '#')) {
-                throw new BaseException("Path \"" + path + "\" should not include \"#\". Use \"HashLocationStrategy\" instead.");
+                throw new BaseException$1("Path \"" + path + "\" should not include \"#\". Use \"HashLocationStrategy\" instead.");
             }
             var illegalCharacter = RegExpWrapper.firstMatch(ParamRoutePath.RESERVED_CHARS, path);
             if (isPresent(illegalCharacter)) {
-                throw new BaseException("Path \"" + path + "\" contains \"" + illegalCharacter[0] + "\" which is not allowed in a route config.");
+                throw new BaseException$1("Path \"" + path + "\" contains \"" + illegalCharacter[0] + "\" which is not allowed in a route config.");
             }
         };
         return ParamRoutePath;
@@ -1813,14 +1824,30 @@ var __extends = (this && this.__extends) || function (d, b) {
         value = StringWrapper.replaceAll(value, REGEXP_ENC_PERCENT, '%');
         return value;
     }
+    function computeNumberOfRegexGroups(regex) {
+        // cleverly compute regex groups by appending an alternative empty matching
+        // pattern and match against an empty string, the resulting match still
+        // receives all the other groups
+        var test_regex = RegExpWrapper.create(regex + "|");
+        var matcher = RegExpWrapper.matcher(test_regex, '');
+        var match = RegExpMatcherWrapper.next(matcher);
+        return match.length;
+    }
     var RegexRoutePath = (function () {
-        function RegexRoutePath(_reString, _serializer) {
+        function RegexRoutePath(_reString, _serializer, _groupNames) {
             this._reString = _reString;
             this._serializer = _serializer;
+            this._groupNames = _groupNames;
             this.terminal = true;
             this.specificity = '2';
             this.hash = this._reString;
             this._regex = RegExpWrapper.create(this._reString);
+            if (this._groupNames != null) {
+                var groups = computeNumberOfRegexGroups(this._reString);
+                if (groups != _groupNames.length) {
+                    throw new _angular_core.BaseException("Regex group names [" + this._groupNames.join(',') + "] must contain names for each matching group and a name for the complete match as its first element of regex '" + this._reString + "'. " + groups + " group names are expected.");
+                }
+            }
         }
         RegexRoutePath.prototype.matchUrl = function (url) {
             var urlPath = url.toString();
@@ -1831,7 +1858,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 return null;
             }
             for (var i = 0; i < match.length; i += 1) {
-                params[i.toString()] = match[i];
+                params[this._groupNames != null ? this._groupNames[i] : i.toString()] = match[i];
             }
             return new MatchedUrl(urlPath, [], params, [], null);
         };
@@ -1864,7 +1891,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             var handler;
             if (isPresent(config.name) && config.name[0].toUpperCase() != config.name[0]) {
                 var suggestedName = config.name[0].toUpperCase() + config.name.substring(1);
-                throw new BaseException("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be PascalCase like \"" + suggestedName + "\".");
+                throw new BaseException$1("Route \"" + config.path + "\" with name \"" + config.name + "\" does not begin with an uppercase letter. Route names should be PascalCase like \"" + suggestedName + "\".");
             }
             if (config instanceof AuxRoute) {
                 handler = new SyncRouteHandler(config.component, config.data);
@@ -1897,7 +1924,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             this._assertNoHashCollision(newRule.hash, config.path);
             if (useAsDefault) {
                 if (isPresent(this.defaultRule)) {
-                    throw new BaseException("Only one route can be default");
+                    throw new BaseException$1("Only one route can be default");
                 }
                 this.defaultRule = newRule;
             }
@@ -1955,17 +1982,17 @@ var __extends = (this && this.__extends) || function (d, b) {
         RuleSet.prototype._assertNoHashCollision = function (hash, path) {
             this.rules.forEach(function (rule) {
                 if (hash == rule.hash) {
-                    throw new BaseException("Configuration '" + path + "' conflicts with existing route '" + rule.path + "'");
+                    throw new BaseException$1("Configuration '" + path + "' conflicts with existing route '" + rule.path + "'");
                 }
             });
         };
         RuleSet.prototype._getRoutePath = function (config) {
             if (isPresent(config.regex)) {
                 if (isFunction(config.serializer)) {
-                    return new RegexRoutePath(config.regex, config.serializer);
+                    return new RegexRoutePath(config.regex, config.serializer, config.regex_group_names);
                 }
                 else {
-                    throw new BaseException("Route provides a regex property, '" + config.regex + "', but no serializer property");
+                    throw new BaseException$1("Route provides a regex property, '" + config.regex + "', but no serializer property");
                 }
             }
             if (isPresent(config.path)) {
@@ -1975,7 +2002,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                     config.path;
                 return new ParamRoutePath(path);
             }
-            throw new BaseException('Route must provide either a path or regex property');
+            throw new BaseException$1('Route must provide either a path or regex property');
         };
         return RuleSet;
     }());
@@ -2009,13 +2036,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             return config;
         }
         if ((+!!config.component) + (+!!config.redirectTo) + (+!!config.loader) != 1) {
-            throw new BaseException("Route config should contain exactly one \"component\", \"loader\", or \"redirectTo\" property.");
-        }
-        if (config.as && config.name) {
-            throw new BaseException("Route config should contain exactly one \"as\" or \"name\" property.");
-        }
-        if (config.as) {
-            config.name = config.as;
+            throw new BaseException$1("Route config should contain exactly one \"component\", \"loader\", or \"redirectTo\" property.");
         }
         if (config.loader) {
             var wrappedLoader = wrapLoaderToReconfigureRegistry(config.loader, registry);
@@ -2052,7 +2073,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                     });
                 }
                 else {
-                    throw new BaseException("Invalid component type \"" + componentDefinitionObject.type + "\". Valid types are \"constructor\" and \"loader\".");
+                    throw new BaseException$1("Invalid component type \"" + componentDefinitionObject.type + "\". Valid types are \"constructor\" and \"loader\".");
                 }
             }
             return new Route(config);
@@ -2072,7 +2093,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     }
     function assertComponentExists(component, path) {
         if (!isType(component)) {
-            throw new BaseException("Component for route \"" + path + "\" is not defined, or is not a class.");
+            throw new BaseException$1("Component for route \"" + path + "\" is not defined, or is not a class.");
         }
     }
     var __decorate$1 = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2279,7 +2300,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 else if (ListWrapper.first(params) == '..') {
                     while (ListWrapper.first(params) == '..') {
                         if (ancestorInstructions.length <= 0) {
-                            throw new BaseException("Link \"" + ListWrapper.toJSON(linkParams) + "\" has too many \"../\" segments.");
+                            throw new BaseException$1("Link \"" + ListWrapper.toJSON(linkParams) + "\" has too many \"../\" segments.");
                         }
                         prevInstruction = ancestorInstructions.pop();
                         params = ListWrapper.slice(params, 1);
@@ -2307,7 +2328,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                         this.hasRoute(routeName, grandparentComponentType);
                     if (parentRouteExists && childRouteExists) {
                         var msg = "Link \"" + ListWrapper.toJSON(linkParams) + "\" is ambiguous, use \"./\" or \"../\" to disambiguate.";
-                        throw new BaseException(msg);
+                        throw new BaseException$1(msg);
                     }
                     if (parentRouteExists) {
                         prevInstruction = ancestorInstructions.pop();
@@ -2322,7 +2343,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
             if (params.length < 1) {
                 var msg = "Link \"" + ListWrapper.toJSON(linkParams) + "\" must include a route name.";
-                throw new BaseException(msg);
+                throw new BaseException$1(msg);
             }
             var generatedInstruction = this._generate(params, ancestorInstructions, prevInstruction, _aux, linkParams);
             // we don't clone the first (root) element
@@ -2354,7 +2375,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             if (linkParams.length == 0) {
                 var defaultInstruction = this.generateDefault(parentComponentType);
                 if (isBlank(defaultInstruction)) {
-                    throw new BaseException("Link \"" + ListWrapper.toJSON(_originalLink) + "\" does not resolve to a terminal instruction.");
+                    throw new BaseException$1("Link \"" + ListWrapper.toJSON(_originalLink) + "\" does not resolve to a terminal instruction.");
                 }
                 return defaultInstruction;
             }
@@ -2366,7 +2387,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
             var rules = this._rules.get(parentComponentType);
             if (isBlank(rules)) {
-                throw new BaseException("Component \"" + getTypeNameForDebugging(parentComponentType) + "\" has no route config.");
+                throw new BaseException$1("Component \"" + getTypeNameForDebugging(parentComponentType) + "\" has no route config.");
             }
             var linkParamIndex = 0;
             var routeParams = {};
@@ -2374,7 +2395,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             if (linkParamIndex < linkParams.length && isString(linkParams[linkParamIndex])) {
                 var routeName = linkParams[linkParamIndex];
                 if (routeName == '' || routeName == '.' || routeName == '..') {
-                    throw new BaseException("\"" + routeName + "/\" is only allowed at the beginning of a link DSL.");
+                    throw new BaseException$1("\"" + routeName + "/\" is only allowed at the beginning of a link DSL.");
                 }
                 linkParamIndex += 1;
                 if (linkParamIndex < linkParams.length) {
@@ -2386,7 +2407,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 }
                 var routeRecognizer = (_aux ? rules.auxRulesByName : rules.rulesByName).get(routeName);
                 if (isBlank(routeRecognizer)) {
-                    throw new BaseException("Component \"" + getTypeNameForDebugging(parentComponentType) + "\" has no route named \"" + routeName + "\".");
+                    throw new BaseException$1("Component \"" + getTypeNameForDebugging(parentComponentType) + "\" has no route named \"" + routeName + "\".");
                 }
                 // Create an "unresolved instruction" for async routes
                 // we'll figure out the rest of the route when we resolve the instruction and
@@ -2527,7 +2548,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             for (var i = 0; i < annotations.length; i++) {
                 var annotation = annotations[i];
                 if (annotation instanceof RouteConfigAnnotation) {
-                    throw new BaseException("Child routes are not allowed for \"" + path + "\". Use \"...\" on the parent's route path.");
+                    throw new BaseException$1("Child routes are not allowed for \"" + path + "\". Use \"...\" on the parent's route path.");
                 }
             }
         }
@@ -2642,10 +2663,10 @@ var __extends = (this && this.__extends) || function (d, b) {
          */
         Router.prototype.registerPrimaryOutlet = function (outlet) {
             if (isPresent(outlet.name)) {
-                throw new BaseException("registerPrimaryOutlet expects to be called with an unnamed outlet.");
+                throw new BaseException$1("registerPrimaryOutlet expects to be called with an unnamed outlet.");
             }
             if (isPresent(this._outlet)) {
-                throw new BaseException("Primary outlet is already registered.");
+                throw new BaseException$1("Primary outlet is already registered.");
             }
             this._outlet = outlet;
             if (isPresent(this.currentInstruction)) {
@@ -2660,7 +2681,7 @@ var __extends = (this && this.__extends) || function (d, b) {
          */
         Router.prototype.unregisterPrimaryOutlet = function (outlet) {
             if (isPresent(outlet.name)) {
-                throw new BaseException("registerPrimaryOutlet expects to be called with an unnamed outlet.");
+                throw new BaseException$1("registerPrimaryOutlet expects to be called with an unnamed outlet.");
             }
             this._outlet = null;
         };
@@ -2672,7 +2693,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         Router.prototype.registerAuxOutlet = function (outlet) {
             var outletName = outlet.name;
             if (isBlank(outletName)) {
-                throw new BaseException("registerAuxOutlet expects to be called with an outlet with a name.");
+                throw new BaseException$1("registerAuxOutlet expects to be called with an outlet with a name.");
             }
             var router = this.auxRouter(this.hostComponent);
             this._auxRouters.set(outletName, router);
@@ -2821,16 +2842,20 @@ var __extends = (this && this.__extends) || function (d, b) {
                     if (result) {
                         return _this.commit(instruction, _skipLocationChange)
                             .then(function (_) {
-                            _this._emitNavigationFinish(instruction.toRootUrl());
+                            _this._emitNavigationFinish(instruction.component);
                             return true;
                         });
                     }
                 });
             });
         };
-        Router.prototype._emitNavigationFinish = function (url) { ObservableWrapper.callEmit(this._subject, url); };
+        Router.prototype._emitNavigationFinish = function (instruction) {
+            ObservableWrapper.callEmit(this._subject, { status: 'success', instruction: instruction });
+        };
         /** @internal */
-        Router.prototype._emitNavigationFail = function (url) { ObservableWrapper.callError(this._subject, url); };
+        Router.prototype._emitNavigationFail = function (url) {
+            ObservableWrapper.callEmit(this._subject, { status: 'fail', url: url });
+        };
         Router.prototype._afterPromiseFinishNavigating = function (promise) {
             var _this = this;
             return PromiseWrapper.catchError(promise.then(function (_) { return _this._finishNavigating(); }), function (err) {
@@ -3335,7 +3360,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 
      * ```
      * @RouteConfig([
-     *   { path: '/user', component: UserCmp, as: 'User' }
+     *   { path: '/user', component: UserCmp, name: 'User' }
      * ]);
      * class MyComp {}
      * ```
@@ -3432,7 +3457,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     }
     function routerPrimaryComponentFactory(app) {
         if (app.componentTypes.length == 0) {
-            throw new BaseException("Bootstrap at least one component before injecting Router.");
+            throw new BaseException$1("Bootstrap at least one component before injecting Router.");
         }
         return app.componentTypes[0];
     }

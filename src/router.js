@@ -258,16 +258,20 @@ var Router = (function () {
                 if (result) {
                     return _this.commit(instruction, _skipLocationChange)
                         .then(function (_) {
-                        _this._emitNavigationFinish(instruction.toRootUrl());
+                        _this._emitNavigationFinish(instruction.component);
                         return true;
                     });
                 }
             });
         });
     };
-    Router.prototype._emitNavigationFinish = function (url) { async_1.ObservableWrapper.callEmit(this._subject, url); };
+    Router.prototype._emitNavigationFinish = function (instruction) {
+        async_1.ObservableWrapper.callEmit(this._subject, { status: 'success', instruction: instruction });
+    };
     /** @internal */
-    Router.prototype._emitNavigationFail = function (url) { async_1.ObservableWrapper.callError(this._subject, url); };
+    Router.prototype._emitNavigationFail = function (url) {
+        async_1.ObservableWrapper.callEmit(this._subject, { status: 'fail', url: url });
+    };
     Router.prototype._afterPromiseFinishNavigating = function (promise) {
         var _this = this;
         return async_1.PromiseWrapper.catchError(promise.then(function (_) { return _this._finishNavigating(); }), function (err) {

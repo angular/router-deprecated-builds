@@ -8,11 +8,12 @@ export interface RegexSerializer {
 export declare class RegexRoutePath implements RoutePath {
     private _reString;
     private _serializer;
+    private _groupNames;
     hash: string;
     terminal: boolean;
     specificity: string;
     private _regex;
-    constructor(_reString: string, _serializer: RegexSerializer);
+    constructor(_reString: string, _serializer: RegexSerializer, _groupNames?: Array<string>);
     matchUrl(url: Url): MatchedUrl;
     generateUrl(params: {
         [key: string]: any;

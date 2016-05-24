@@ -19,7 +19,7 @@ var router_1 = require('../router');
 
  * ```
  * @RouteConfig([
- *   { path: '/user', component: UserCmp, as: 'User' }
+ *   { path: '/user', component: UserCmp, name: 'User' }
  * ]);
  * class MyComp {}
  * ```

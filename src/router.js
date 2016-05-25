@@ -22,9 +22,9 @@ var lang_1 = require('../src/facade/lang');
 var exceptions_1 = require('../src/facade/exceptions');
 var common_1 = require('@angular/common');
 var route_registry_1 = require('./route_registry');
+var instruction_1 = require('./instruction');
 var route_lifecycle_reflector_1 = require('./lifecycle/route_lifecycle_reflector');
 var core_1 = require('@angular/core');
-var instruction_1 = require("./instruction");
 var _resolveToTrue = async_1.PromiseWrapper.resolve(true);
 var _resolveToFalse = async_1.PromiseWrapper.resolve(false);
 /**

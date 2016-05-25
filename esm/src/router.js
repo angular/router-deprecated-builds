@@ -16,9 +16,9 @@ import { isBlank, isPresent, Type } from '../src/facade/lang';
 import { BaseException } from '../src/facade/exceptions';
 import { Location } from '@angular/common';
 import { RouteRegistry, ROUTER_PRIMARY_COMPONENT } from './route_registry';
+import { DefaultInstruction } from './instruction';
 import { getCanActivateHook } from './lifecycle/route_lifecycle_reflector';
 import { Injectable, Inject } from '@angular/core';
-import { DefaultInstruction } from "./instruction";
 let _resolveToTrue = PromiseWrapper.resolve(true);
 let _resolveToFalse = PromiseWrapper.resolve(false);
 /**

@@ -22,6 +22,7 @@ var rule_set_1 = require('./rules/rule_set');
 var instruction_1 = require('./instruction');
 var route_config_normalizer_1 = require('./route_config/route_config_normalizer');
 var url_parser_1 = require('./url_parser');
+var core_private_1 = require('../core_private');
 var _resolveToNull = async_1.PromiseWrapper.resolve(null);
 // A LinkItemArray is an array, which describes a set of routes
 // The items in the array are found in groups:
@@ -109,7 +110,7 @@ var RouteRegistry = (function () {
         if (this._rules.has(component)) {
             return;
         }
-        var annotations = core_1.reflector.annotations(component);
+        var annotations = core_private_1.reflector.annotations(component);
         if (lang_1.isPresent(annotations)) {
             for (var i = 0; i < annotations.length; i++) {
                 var annotation = annotations[i];
@@ -453,7 +454,7 @@ function assertTerminalComponent(component, path) {
     if (!lang_1.isType(component)) {
         return;
     }
-    var annotations = core_1.reflector.annotations(component);
+    var annotations = core_private_1.reflector.annotations(component);
     if (lang_1.isPresent(annotations)) {
         for (var i = 0; i < annotations.length; i++) {
             var annotation = annotations[i];

@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v2.0.0-6c6b316
+ * @license AngularJS v2.0.0-cb980d3
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -304,6 +304,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      * https://github.com/jhusain/observable-spec
      *
      * Once a reference implementation of the spec is available, switch to it.
+     * @stable
      */
     var EventEmitter = (function (_super) {
         __extends(EventEmitter, _super);
@@ -645,6 +646,9 @@ var __extends = (this && this.__extends) || function (d, b) {
             };
         }
     })();
+    /**
+     * @stable
+     */
     var BaseException$1 = (function (_super) {
         __extends(BaseException$1, _super);
         function BaseException$1(message) {
@@ -2007,6 +2011,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         return RuleSet;
     }());
     var makeDecorator = _angular_core.__core_private__.makeDecorator;
+    var reflector = _angular_core.__core_private__.reflector;
     // Copied from RouteConfig in route_config_impl.
     /**
      * The `RouteConfig` decorator defines routes for a given component.
@@ -2200,7 +2205,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             if (this._rules.has(component)) {
                 return;
             }
-            var annotations = _angular_core.reflector.annotations(component);
+            var annotations = reflector.annotations(component);
             if (isPresent(annotations)) {
                 for (var i = 0; i < annotations.length; i++) {
                     var annotation = annotations[i];
@@ -2543,7 +2548,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         if (!isType(component)) {
             return;
         }
-        var annotations = _angular_core.reflector.annotations(component);
+        var annotations = reflector.annotations(component);
         if (isPresent(annotations)) {
             for (var i = 0; i < annotations.length; i++) {
                 var annotation = annotations[i];
@@ -2583,7 +2588,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         return e.name in type.prototype;
     }
     function getCanActivateHook(type) {
-        var annotations = _angular_core.reflector.annotations(type);
+        var annotations = reflector.annotations(type);
         for (var i = 0; i < annotations.length; i += 1) {
             var annotation = annotations[i];
             if (annotation instanceof CanActivateAnnotation) {

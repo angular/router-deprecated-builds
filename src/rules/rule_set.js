@@ -1,8 +1,8 @@
 "use strict";
-var lang_1 = require('../../src/facade/lang');
-var exceptions_1 = require('../../src/facade/exceptions');
-var collection_1 = require('../../src/facade/collection');
-var async_1 = require('../../src/facade/async');
+var lang_1 = require('../facade/lang');
+var exceptions_1 = require('../facade/exceptions');
+var collection_1 = require('../facade/collection');
+var async_1 = require('../facade/async');
 var rules_1 = require('./rules');
 var route_config_impl_1 = require('../route_config/route_config_impl');
 var async_route_handler_1 = require('./route_handlers/async_route_handler');

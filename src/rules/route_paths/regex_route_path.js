@@ -1,5 +1,5 @@
 "use strict";
-var lang_1 = require('../../../src/facade/lang');
+var lang_1 = require('../../facade/lang');
 var core_1 = require('@angular/core');
 var route_path_1 = require('./route_path');
 function computeNumberOfRegexGroups(regex) {

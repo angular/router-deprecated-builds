@@ -1,5 +1,5 @@
 import { RouteDefinition } from './route_config_decorator';
-import { Type } from '../../src/facade/lang';
+import { Type } from '../facade/lang';
 import { RouteRegistry } from '../route_registry';
 /**
  * Given a JS Object that represents a route config, returns a corresponding Route, AsyncRoute,

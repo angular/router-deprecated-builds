@@ -1,7 +1,7 @@
 "use strict";
 var route_config_decorator_1 = require('./route_config_decorator');
-var lang_1 = require('../../src/facade/lang');
-var exceptions_1 = require('../../src/facade/exceptions');
+var lang_1 = require('../facade/lang');
+var exceptions_1 = require('../facade/exceptions');
 /**
  * Given a JS Object that represents a route config, returns a corresponding Route, AsyncRoute,
  * AuxRoute or Redirect object.

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
-var lang_1 = require('../../src/facade/lang');
+var lang_1 = require('../facade/lang');
 var router_1 = require('../router');
 /**
  * The RouterLink directive lets you link to specific parts of your app.

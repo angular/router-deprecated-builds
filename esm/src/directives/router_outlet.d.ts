@@ -1,4 +1,4 @@
-import { EventEmitter } from '../../src/facade/async';
+import { EventEmitter } from '../facade/async';
 import { DynamicComponentLoader, ViewContainerRef, OnDestroy } from '@angular/core';
 import * as routerMod from '../router';
 import { ComponentInstruction } from '../instruction';

@@ -1,7 +1,7 @@
-import { isBlank, isPresent, isFunction } from '../../src/facade/lang';
-import { BaseException } from '../../src/facade/exceptions';
-import { Map } from '../../src/facade/collection';
-import { PromiseWrapper } from '../../src/facade/async';
+import { isBlank, isPresent, isFunction } from '../facade/lang';
+import { BaseException } from '../facade/exceptions';
+import { Map } from '../facade/collection';
+import { PromiseWrapper } from '../facade/async';
 import { RouteRule, RedirectRule, PathMatch } from './rules';
 import { Route, AsyncRoute, AuxRoute, Redirect } from '../route_config/route_config_impl';
 import { AsyncRouteHandler } from './route_handlers/async_route_handler';

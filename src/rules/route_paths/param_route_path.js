@@ -1,7 +1,7 @@
 "use strict";
-var lang_1 = require('../../../src/facade/lang');
-var exceptions_1 = require('../../../src/facade/exceptions');
-var collection_1 = require('../../../src/facade/collection');
+var lang_1 = require('../../facade/lang');
+var exceptions_1 = require('../../facade/exceptions');
+var collection_1 = require('../../facade/collection');
 var utils_1 = require('../../utils');
 var url_parser_1 = require('../../url_parser');
 var route_path_1 = require('./route_path');

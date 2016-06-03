@@ -1,4 +1,4 @@
-import { isPresent } from '../../../src/facade/lang';
+import { isPresent } from '../../facade/lang';
 import { RouteData, BLANK_ROUTE_DATA } from '../../instruction';
 export class AsyncRouteHandler {
     constructor(_loader, data = null) {

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Directive } from '@angular/core';
 import { Location } from '@angular/common';
-import { isString } from '../../src/facade/lang';
+import { isString } from '../facade/lang';
 import { Router } from '../router';
 /**
  * The RouterLink directive lets you link to specific parts of your app.

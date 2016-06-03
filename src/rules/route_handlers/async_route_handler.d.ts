@@ -1,4 +1,4 @@
-import { Type } from '../../../src/facade/lang';
+import { Type } from '../../facade/lang';
 import { RouteHandler } from './route_handler';
 import { RouteData } from '../../instruction';
 export declare class AsyncRouteHandler implements RouteHandler {

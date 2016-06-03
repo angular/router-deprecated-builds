@@ -3228,9 +3228,9 @@ var __extends = (this && this.__extends) || function (d, b) {
             var componentType = nextInstruction.componentType;
             var childRouter = this._parentRouter.childRouter(componentType);
             var providers = _angular_core.ReflectiveInjector.resolve([
-                _angular_core.provide(RouteData, { useValue: nextInstruction.routeData }),
-                _angular_core.provide(RouteParams, { useValue: new RouteParams(nextInstruction.params) }),
-                _angular_core.provide(exports.Router, { useValue: childRouter })
+                { provide: RouteData, useValue: nextInstruction.routeData },
+                { provide: RouteParams, useValue: new RouteParams(nextInstruction.params) },
+                { provide: exports.Router, useValue: childRouter }
             ]);
             this._componentRef =
                 this._loader.loadNextToLocation(componentType, this._viewContainerRef, providers);
@@ -3467,7 +3467,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         return app.componentTypes[0];
     }
     /**
-     * A list of {@link Provider}s. To use the router, you must add this to your application.
+     * A list of providers. To use the router, you must add this to your application.
      *
      * ### Example ([live demo](http://plnkr.co/edit/iRUP8B5OUbxCWQ3AcIDm))
      *

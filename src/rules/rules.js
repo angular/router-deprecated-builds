@@ -30,7 +30,7 @@ var PathMatch = (function (_super) {
 exports.PathMatch = PathMatch;
 var RedirectMatch = (function (_super) {
     __extends(RedirectMatch, _super);
-    function RedirectMatch(redirectTo, specificity) {
+    function RedirectMatch(redirectTo, specificity /** TODO #9100 */) {
         _super.call(this);
         this.redirectTo = redirectTo;
         this.specificity = specificity;

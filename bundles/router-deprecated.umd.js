@@ -110,7 +110,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         StringWrapper.replaceAllMapped = function (s, from, cb) {
             return s.replace(from, function () {
-                var matches = [];
+                var matches = []; /** TODO #9100 */
                 for (var _i = 0; _i < arguments.length; _i++) {
                     matches[_i - 0] = arguments[_i];
                 }
@@ -200,7 +200,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         function PromiseWrapper() {
         }
         PromiseWrapper.resolve = function (obj) { return Promise.resolve(obj); };
-        PromiseWrapper.reject = function (obj, _) { return Promise.reject(obj); };
+        PromiseWrapper.reject = function (obj, _ /** TODO #9100 */) { return Promise.reject(obj); };
         // Note: We can't rename this method into `catch`, as this is not a valid
         // method name in Dart.
         PromiseWrapper.catchError = function (promise, onError) {
@@ -327,8 +327,8 @@ var __extends = (this && this.__extends) || function (d, b) {
             var errorFn = function (err) { return null; };
             var completeFn = function () { return null; };
             if (generatorOrNext && typeof generatorOrNext === 'object') {
-                schedulerFn = this.__isAsync ? function (value) { setTimeout(function () { return generatorOrNext.next(value); }); } :
-                    function (value) { generatorOrNext.next(value); };
+                schedulerFn = this.__isAsync ? function (value /** TODO #9100 */) { setTimeout(function () { return generatorOrNext.next(value); }); } :
+                    function (value /** TODO #9100 */) { generatorOrNext.next(value); };
                 if (generatorOrNext.error) {
                     errorFn = this.__isAsync ? function (err) { setTimeout(function () { return generatorOrNext.error(err); }); } :
                         function (err) { generatorOrNext.error(err); };
@@ -339,8 +339,8 @@ var __extends = (this && this.__extends) || function (d, b) {
                 }
             }
             else {
-                schedulerFn = this.__isAsync ? function (value) { setTimeout(function () { return generatorOrNext(value); }); } :
-                    function (value) { generatorOrNext(value); };
+                schedulerFn = this.__isAsync ? function (value /** TODO #9100 */) { setTimeout(function () { return generatorOrNext(value); }); } :
+                    function (value /** TODO #9100 */) { generatorOrNext(value); };
                 if (error) {
                     errorFn =
                         this.__isAsync ? function (err) { setTimeout(function () { return error(err); }); } : function (err) { error(err); };
@@ -852,7 +852,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         if (isBlank(urlParams)) {
             return [];
         }
-        StringMapWrapper.forEach(urlParams, function (value, key) { paramsArray.push((value === true) ? key : key + '=' + value); });
+        StringMapWrapper.forEach(urlParams, function (value /** TODO #9100 */, key /** TODO #9100 */) { paramsArray.push((value === true) ? key : key + '=' + value); });
         return paramsArray;
     }
     // Convert an object of url parameters into a string that can be used in an URL
@@ -1371,7 +1371,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         /**
          * @internal
          */
-        function ComponentInstruction(urlPath, urlParams, data, componentType, terminal, specificity, params, routeName) {
+        function ComponentInstruction(urlPath, urlParams, data, componentType /** TODO #9100 */, terminal, specificity, params, routeName) {
             if (params === void 0) { params = null; }
             this.urlPath = urlPath;
             this.urlParams = urlParams;
@@ -1403,7 +1403,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     }(RouteMatch));
     var RedirectMatch = (function (_super) {
         __extends(RedirectMatch, _super);
-        function RedirectMatch(redirectTo, specificity) {
+        function RedirectMatch(redirectTo, specificity /** TODO #9100 */) {
             _super.call(this);
             this.redirectTo = redirectTo;
             this.specificity = specificity;
@@ -1526,7 +1526,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             this.map = {};
             this.keys = {};
             if (isPresent(map)) {
-                StringMapWrapper.forEach(map, function (value, key) {
+                StringMapWrapper.forEach(map, function (value /** TODO #9100 */, key /** TODO #9100 */) {
                     _this.map[key] = isPresent(value) ? value.toString() : null;
                     _this.keys[key] = true;
                 });
@@ -1761,7 +1761,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             // The code below uses place values to combine the different types of segments into a single
             // string that we can sort later. Each static segment is marked as a specificity of "2," each
             // dynamic segment is worth "1" specificity, and stars are worth "0" specificity.
-            var i, length = this._segments.length, specificity;
+            var i /** TODO #9100 */, length = this._segments.length, specificity;
             if (length == 0) {
                 // a single slash (or "empty segment" is as specific as a static segment
                 specificity += '2';
@@ -1777,7 +1777,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         ParamRoutePath.prototype._calculateHash = function () {
             // this function is used to determine whether a route config path like `/foo/:id` collides with
             // `/foo/:name`
-            var i, length = this._segments.length;
+            var i /** TODO #9100 */, length = this._segments.length;
             var hashParts = [];
             for (i = 0; i < length; i++) {
                 hashParts.push(this._segments[i].hash);
@@ -1983,7 +1983,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
             return rule.generate(params);
         };
-        RuleSet.prototype._assertNoHashCollision = function (hash, path) {
+        RuleSet.prototype._assertNoHashCollision = function (hash, path /** TODO #9100 */) {
             this.rules.forEach(function (rule) {
                 if (hash == rule.hash) {
                     throw new BaseException$1("Configuration '" + path + "' conflicts with existing route '" + rule.path + "'");
@@ -2090,7 +2090,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     }
     function wrapLoaderToReconfigureRegistry(loader, registry) {
         return function () {
-            return loader().then(function (componentType) {
+            return loader().then(function (componentType /** TODO #9100 */) {
                 registry.configFromComponent(componentType);
                 return componentType;
             });
@@ -2544,7 +2544,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         }
         return a.length - b.length;
     }
-    function assertTerminalComponent(component, path) {
+    function assertTerminalComponent(component /** TODO #9100 */, path /** TODO #9100 */) {
         if (!isType(component)) {
             return;
         }
@@ -2582,12 +2582,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     /*@ts2dart_const*/ new RouteLifecycleHook("routerOnReuse");
     var routerOnDeactivate = 
     /*@ts2dart_const*/ new RouteLifecycleHook("routerOnDeactivate");
-    function hasLifecycleHook(e, type) {
+    function hasLifecycleHook(e, type /** TODO #9100 */) {
         if (!(type instanceof _angular_core.Type))
             return false;
         return e.name in type.prototype;
     }
-    function getCanActivateHook(type) {
+    function getCanActivateHook(type /** TODO #9100 */) {
         var annotations = reflector.annotations(type);
         for (var i = 0; i < annotations.length; i += 1) {
             var annotation = annotations[i];
@@ -2733,7 +2733,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                     return false;
                 }
                 if (isPresent(instruction.component.params)) {
-                    StringMapWrapper.forEach(instruction.component.params, function (value, key) {
+                    StringMapWrapper.forEach(instruction.component.params, function (value /** TODO #9100 */, key /** TODO #9100 */) {
                         if (currentInstruction.component.params[key] !== value) {
                             reason = false;
                         }
@@ -2826,7 +2826,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 if (isPresent(instruction.child)) {
                     unsettledInstructions.push(_this._settleInstruction(instruction.child));
                 }
-                StringMapWrapper.forEach(instruction.auxInstruction, function (instruction, _) {
+                StringMapWrapper.forEach(instruction.auxInstruction, function (instruction, _ /** TODO #9100 */) {
                     unsettledInstructions.push(_this._settleInstruction(instruction));
                 });
                 return PromiseWrapper.all(unsettledInstructions);
@@ -3108,7 +3108,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     ], exports.RootRouter);
     var ChildRouter = (function (_super) {
         __extends(ChildRouter, _super);
-        function ChildRouter(parent, hostComponent) {
+        function ChildRouter(parent, hostComponent /** TODO #9100 */) {
             _super.call(this, parent.registry, parent, hostComponent, parent.root);
             this.parent = parent;
         }

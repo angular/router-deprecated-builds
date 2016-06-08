@@ -16,7 +16,7 @@ export class PathMatch extends RouteMatch {
     }
 }
 export class RedirectMatch extends RouteMatch {
-    constructor(redirectTo, specificity) {
+    constructor(redirectTo, specificity /** TODO #9100 */) {
         super();
         this.redirectTo = redirectTo;
         this.specificity = specificity;

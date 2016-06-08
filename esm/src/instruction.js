@@ -274,7 +274,7 @@ export class ComponentInstruction {
     /**
      * @internal
      */
-    constructor(urlPath, urlParams, data, componentType, terminal, specificity, params = null, routeName) {
+    constructor(urlPath, urlParams, data, componentType /** TODO #9100 */, terminal, specificity, params = null, routeName) {
         this.urlPath = urlPath;
         this.urlParams = urlParams;
         this.componentType = componentType;

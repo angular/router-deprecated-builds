@@ -5,7 +5,7 @@ export class TouchMap {
         this.map = {};
         this.keys = {};
         if (isPresent(map)) {
-            StringMapWrapper.forEach(map, (value, key) => {
+            StringMapWrapper.forEach(map, (value /** TODO #9100 */, key /** TODO #9100 */) => {
                 this.map[key] = isPresent(value) ? value.toString() : null;
                 this.keys[key] = true;
             });

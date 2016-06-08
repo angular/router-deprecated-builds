@@ -450,7 +450,7 @@ function compareSpecificityStrings(a, b) {
     }
     return a.length - b.length;
 }
-function assertTerminalComponent(component, path) {
+function assertTerminalComponent(component /** TODO #9100 */, path /** TODO #9100 */) {
     if (!lang_1.isType(component)) {
         return;
     }

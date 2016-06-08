@@ -326,7 +326,7 @@ var ComponentInstruction = (function () {
     /**
      * @internal
      */
-    function ComponentInstruction(urlPath, urlParams, data, componentType, terminal, specificity, params, routeName) {
+    function ComponentInstruction(urlPath, urlParams, data, componentType /** TODO #9100 */, terminal, specificity, params, routeName) {
         if (params === void 0) { params = null; }
         this.urlPath = urlPath;
         this.urlParams = urlParams;

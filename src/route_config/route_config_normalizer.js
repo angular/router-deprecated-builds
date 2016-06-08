@@ -74,7 +74,7 @@ function normalizeRouteConfig(config, registry) {
 exports.normalizeRouteConfig = normalizeRouteConfig;
 function wrapLoaderToReconfigureRegistry(loader, registry) {
     return function () {
-        return loader().then(function (componentType) {
+        return loader().then(function (componentType /** TODO #9100 */) {
             registry.configFromComponent(componentType);
             return componentType;
         });

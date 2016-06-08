@@ -138,7 +138,7 @@ export let Router = class Router {
                 return false;
             }
             if (isPresent(instruction.component.params)) {
-                StringMapWrapper.forEach(instruction.component.params, (value, key) => {
+                StringMapWrapper.forEach(instruction.component.params, (value /** TODO #9100 */, key /** TODO #9100 */) => {
                     if (currentInstruction.component.params[key] !== value) {
                         reason = false;
                     }
@@ -225,7 +225,7 @@ export let Router = class Router {
             if (isPresent(instruction.child)) {
                 unsettledInstructions.push(this._settleInstruction(instruction.child));
             }
-            StringMapWrapper.forEach(instruction.auxInstruction, (instruction, _) => {
+            StringMapWrapper.forEach(instruction.auxInstruction, (instruction, _ /** TODO #9100 */) => {
                 unsettledInstructions.push(this._settleInstruction(instruction));
             });
             return PromiseWrapper.all(unsettledInstructions);
@@ -493,7 +493,7 @@ RootRouter = __decorate([
     __metadata('design:paramtypes', [RouteRegistry, Location, Type])
 ], RootRouter);
 class ChildRouter extends Router {
-    constructor(parent, hostComponent) {
+    constructor(parent, hostComponent /** TODO #9100 */) {
         super(parent.registry, parent, hostComponent, parent.root);
         this.parent = parent;
     }

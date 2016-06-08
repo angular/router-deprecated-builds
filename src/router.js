@@ -144,7 +144,7 @@ var Router = (function () {
                 return false;
             }
             if (lang_1.isPresent(instruction.component.params)) {
-                collection_1.StringMapWrapper.forEach(instruction.component.params, function (value, key) {
+                collection_1.StringMapWrapper.forEach(instruction.component.params, function (value /** TODO #9100 */, key /** TODO #9100 */) {
                     if (currentInstruction.component.params[key] !== value) {
                         reason = false;
                     }
@@ -237,7 +237,7 @@ var Router = (function () {
             if (lang_1.isPresent(instruction.child)) {
                 unsettledInstructions.push(_this._settleInstruction(instruction.child));
             }
-            collection_1.StringMapWrapper.forEach(instruction.auxInstruction, function (instruction, _) {
+            collection_1.StringMapWrapper.forEach(instruction.auxInstruction, function (instruction, _ /** TODO #9100 */) {
                 unsettledInstructions.push(_this._settleInstruction(instruction));
             });
             return async_1.PromiseWrapper.all(unsettledInstructions);
@@ -521,7 +521,7 @@ var RootRouter = (function (_super) {
 exports.RootRouter = RootRouter;
 var ChildRouter = (function (_super) {
     __extends(ChildRouter, _super);
-    function ChildRouter(parent, hostComponent) {
+    function ChildRouter(parent, hostComponent /** TODO #9100 */) {
         _super.call(this, parent.registry, parent, hostComponent, parent.root);
         this.parent = parent;
     }

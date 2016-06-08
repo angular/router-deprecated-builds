@@ -122,7 +122,7 @@ var RuleSet = (function () {
         }
         return rule.generate(params);
     };
-    RuleSet.prototype._assertNoHashCollision = function (hash, path) {
+    RuleSet.prototype._assertNoHashCollision = function (hash, path /** TODO #9100 */) {
         this.rules.forEach(function (rule) {
             if (hash == rule.hash) {
                 throw new exceptions_1.BaseException("Configuration '" + path + "' conflicts with existing route '" + rule.path + "'");

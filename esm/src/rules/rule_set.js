@@ -121,7 +121,7 @@ export class RuleSet {
         }
         return rule.generate(params);
     }
-    _assertNoHashCollision(hash, path) {
+    _assertNoHashCollision(hash, path /** TODO #9100 */) {
         this.rules.forEach((rule) => {
             if (hash == rule.hash) {
                 throw new BaseException(`Configuration '${path}' conflicts with existing route '${rule.path}'`);

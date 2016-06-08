@@ -196,7 +196,7 @@ var ParamRoutePath = (function () {
         // The code below uses place values to combine the different types of segments into a single
         // string that we can sort later. Each static segment is marked as a specificity of "2," each
         // dynamic segment is worth "1" specificity, and stars are worth "0" specificity.
-        var i, length = this._segments.length, specificity;
+        var i /** TODO #9100 */, length = this._segments.length, specificity;
         if (length == 0) {
             // a single slash (or "empty segment" is as specific as a static segment
             specificity += '2';
@@ -212,7 +212,7 @@ var ParamRoutePath = (function () {
     ParamRoutePath.prototype._calculateHash = function () {
         // this function is used to determine whether a route config path like `/foo/:id` collides with
         // `/foo/:name`
-        var i, length = this._segments.length;
+        var i /** TODO #9100 */, length = this._segments.length;
         var hashParts = [];
         for (i = 0; i < length; i++) {
             hashParts.push(this._segments[i].hash);

@@ -6,7 +6,7 @@ export function convertUrlParamsToArray(urlParams) {
     if (isBlank(urlParams)) {
         return [];
     }
-    StringMapWrapper.forEach(urlParams, (value, key) => { paramsArray.push((value === true) ? key : key + '=' + value); });
+    StringMapWrapper.forEach(urlParams, (value /** TODO #9100 */, key /** TODO #9100 */) => { paramsArray.push((value === true) ? key : key + '=' + value); });
     return paramsArray;
 }
 // Convert an object of url parameters into a string that can be used in an URL

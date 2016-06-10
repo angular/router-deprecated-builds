@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var async_1 = require('../src/facade/async');
 var collection_1 = require('../src/facade/collection');
 var lang_1 = require('../src/facade/lang');
-var async_1 = require('../src/facade/async');
 /**
  * `RouteParams` is an immutable map of parameters for the given route
  * based on the url matcher and optional parameters for that route.

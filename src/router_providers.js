@@ -1,7 +1,7 @@
 "use strict";
-var router_providers_common_1 = require('./router_providers_common');
-var platform_browser_1 = require('@angular/platform-browser');
 var common_1 = require('@angular/common');
+var platform_browser_1 = require('@angular/platform-browser');
+var router_providers_common_1 = require('./router_providers_common');
 /**
  * A list of providers. To use the router, you must add this to your application.
  *

@@ -1,12 +1,12 @@
 "use strict";
-var lang_1 = require('../../facade/lang');
 var core_1 = require('@angular/core');
+var lang_1 = require('../../facade/lang');
 var route_path_1 = require('./route_path');
 function computeNumberOfRegexGroups(regex) {
     // cleverly compute regex groups by appending an alternative empty matching
     // pattern and match against an empty string, the resulting match still
     // receives all the other groups
-    var test_regex = lang_1.RegExpWrapper.create(regex + "|");
+    var test_regex = lang_1.RegExpWrapper.create(regex + '|');
     var matcher = lang_1.RegExpWrapper.matcher(test_regex, '');
     var match = lang_1.RegExpMatcherWrapper.next(matcher);
     return match.length;

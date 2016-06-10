@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
-import { CanActivate } from './lifecycle_annotations_impl';
 import { reflector } from '../../core_private';
+import { CanActivate } from './lifecycle_annotations_impl';
 export function hasLifecycleHook(e, type /** TODO #9100 */) {
     if (!(type instanceof Type))
         return false;

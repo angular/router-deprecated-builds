@@ -1,14 +1,14 @@
 "use strict";
-var lang_1 = require('../facade/lang');
-var exceptions_1 = require('../facade/exceptions');
-var collection_1 = require('../facade/collection');
 var async_1 = require('../facade/async');
-var rules_1 = require('./rules');
+var collection_1 = require('../facade/collection');
+var exceptions_1 = require('../facade/exceptions');
+var lang_1 = require('../facade/lang');
 var route_config_impl_1 = require('../route_config/route_config_impl');
 var async_route_handler_1 = require('./route_handlers/async_route_handler');
 var sync_route_handler_1 = require('./route_handlers/sync_route_handler');
 var param_route_path_1 = require('./route_paths/param_route_path');
 var regex_route_path_1 = require('./route_paths/regex_route_path');
+var rules_1 = require('./rules');
 /**
  * A `RuleSet` is responsible for recognizing routes for a particular component.
  * It is consumed by `RouteRegistry`, which knows how to recognize an entire hierarchy of

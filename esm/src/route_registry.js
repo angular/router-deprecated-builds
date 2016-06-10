@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { ListWrapper, Map, StringMapWrapper } from '../src/facade/collection';
 import { PromiseWrapper } from '../src/facade/async';
+import { ListWrapper, Map, StringMapWrapper } from '../src/facade/collection';
 import { isPresent, isArray, isBlank, isType, isString, isStringMap, Type, StringWrapper, Math, getTypeNameForDebugging } from '../src/facade/lang';
 import { BaseException } from '../src/facade/exceptions';
 import { Injectable, Inject, OpaqueToken } from '@angular/core';

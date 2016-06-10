@@ -1,13 +1,13 @@
-import { isBlank, isPresent, isFunction } from '../facade/lang';
-import { BaseException } from '../facade/exceptions';
-import { Map } from '../facade/collection';
 import { PromiseWrapper } from '../facade/async';
-import { RouteRule, RedirectRule, PathMatch } from './rules';
-import { Route, AsyncRoute, AuxRoute, Redirect } from '../route_config/route_config_impl';
+import { Map } from '../facade/collection';
+import { BaseException } from '../facade/exceptions';
+import { isBlank, isFunction, isPresent } from '../facade/lang';
+import { AsyncRoute, AuxRoute, Redirect, Route } from '../route_config/route_config_impl';
 import { AsyncRouteHandler } from './route_handlers/async_route_handler';
 import { SyncRouteHandler } from './route_handlers/sync_route_handler';
 import { ParamRoutePath } from './route_paths/param_route_path';
 import { RegexRoutePath } from './route_paths/regex_route_path';
+import { PathMatch, RedirectRule, RouteRule } from './rules';
 /**
  * A `RuleSet` is responsible for recognizing routes for a particular component.
  * It is consumed by `RouteRegistry`, which knows how to recognize an entire hierarchy of

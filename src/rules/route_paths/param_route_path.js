@@ -1,9 +1,9 @@
 "use strict";
-var lang_1 = require('../../facade/lang');
-var exceptions_1 = require('../../facade/exceptions');
 var collection_1 = require('../../facade/collection');
-var utils_1 = require('../../utils');
+var exceptions_1 = require('../../facade/exceptions');
+var lang_1 = require('../../facade/lang');
 var url_parser_1 = require('../../url_parser');
+var utils_1 = require('../../utils');
 var route_path_1 = require('./route_path');
 /**
  * Identified by a `...` URL segment. This indicates that the
@@ -102,14 +102,16 @@ var ParamRoutePath = (function () {
             if (lang_1.isPresent(currentUrlSegment)) {
                 // the star segment consumes all of the remaining URL, including matrix params
                 if (pathSegment instanceof StarPathSegment) {
-                    positionalParams[pathSegment.name] = currentUrlSegment.toString();
+                    positionalParams[pathSegment.name] =
+                        currentUrlSegment.toString();
                     captured.push(currentUrlSegment.toString());
                     nextUrlSegment = null;
                     break;
                 }
                 captured.push(currentUrlSegment.path);
                 if (pathSegment instanceof DynamicPathSegment) {
-                    positionalParams[pathSegment.name] = decodeDynamicSegment(currentUrlSegment.path);
+                    positionalParams[pathSegment.name] =
+                        decodeDynamicSegment(currentUrlSegment.path);
                 }
                 else if (!pathSegment.match(currentUrlSegment.path)) {
                     return null;
@@ -159,7 +161,7 @@ var ParamRoutePath = (function () {
     ParamRoutePath.prototype._parsePathString = function (routePath) {
         // normalize route as not starting with a "/". Recognition will
         // also normalize.
-        if (routePath.startsWith("/")) {
+        if (routePath.startsWith('/')) {
             routePath = routePath.substring(1);
         }
         var segmentStrings = routePath.split('/');

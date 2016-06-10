@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var lang_1 = require('../facade/lang');
-var exceptions_1 = require('../facade/exceptions');
-var promise_1 = require('../facade/promise');
 var collection_1 = require('../facade/collection');
-var url_parser_1 = require('../url_parser');
+var exceptions_1 = require('../facade/exceptions');
+var lang_1 = require('../facade/lang');
+var promise_1 = require('../facade/promise');
 var instruction_1 = require('../instruction');
+var url_parser_1 = require('../url_parser');
 // RouteMatch objects hold information about a match between a rule and a URL
 var RouteMatch = (function () {
     function RouteMatch() {

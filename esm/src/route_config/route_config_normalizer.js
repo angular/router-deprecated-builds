@@ -1,6 +1,6 @@
-import { AsyncRoute, AuxRoute, Route, Redirect } from './route_config_decorator';
-import { isType } from '../facade/lang';
 import { BaseException } from '../facade/exceptions';
+import { isType } from '../facade/lang';
+import { AsyncRoute, AuxRoute, Redirect, Route } from './route_config_decorator';
 /**
  * Given a JS Object that represents a route config, returns a corresponding Route, AsyncRoute,
  * AuxRoute or Redirect object.

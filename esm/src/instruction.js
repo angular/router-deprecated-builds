@@ -1,6 +1,6 @@
-import { StringMapWrapper } from '../src/facade/collection';
-import { isPresent, isBlank, normalizeBlank } from '../src/facade/lang';
 import { PromiseWrapper } from '../src/facade/async';
+import { StringMapWrapper } from '../src/facade/collection';
+import { isBlank, isPresent, normalizeBlank } from '../src/facade/lang';
 /**
  * `RouteParams` is an immutable map of parameters for the given route
  * based on the url matcher and optional parameters for that route.

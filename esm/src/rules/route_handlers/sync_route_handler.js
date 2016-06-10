@@ -1,6 +1,6 @@
 import { PromiseWrapper } from '../../facade/async';
 import { isPresent } from '../../facade/lang';
-import { RouteData, BLANK_ROUTE_DATA } from '../../instruction';
+import { BLANK_ROUTE_DATA, RouteData } from '../../instruction';
 export class SyncRouteHandler {
     constructor(componentType, data) {
         this.componentType = componentType;

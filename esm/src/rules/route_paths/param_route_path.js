@@ -1,8 +1,8 @@
-import { RegExpWrapper, StringWrapper, isPresent, isBlank } from '../../facade/lang';
-import { BaseException } from '../../facade/exceptions';
 import { StringMapWrapper } from '../../facade/collection';
-import { TouchMap, normalizeString } from '../../utils';
+import { BaseException } from '../../facade/exceptions';
+import { RegExpWrapper, StringWrapper, isBlank, isPresent } from '../../facade/lang';
 import { RootUrl, convertUrlParamsToArray } from '../../url_parser';
+import { TouchMap, normalizeString } from '../../utils';
 import { GeneratedUrl, MatchedUrl } from './route_path';
 /**
  * Identified by a `...` URL segment. This indicates that the
@@ -97,14 +97,16 @@ export class ParamRoutePath {
             if (isPresent(currentUrlSegment)) {
                 // the star segment consumes all of the remaining URL, including matrix params
                 if (pathSegment instanceof StarPathSegment) {
-                    positionalParams[pathSegment.name] = currentUrlSegment.toString();
+                    positionalParams[pathSegment.name] =
+                        currentUrlSegment.toString();
                     captured.push(currentUrlSegment.toString());
                     nextUrlSegment = null;
                     break;
                 }
                 captured.push(currentUrlSegment.path);
                 if (pathSegment instanceof DynamicPathSegment) {
-                    positionalParams[pathSegment.name] = decodeDynamicSegment(currentUrlSegment.path);
+                    positionalParams[pathSegment.name] =
+                        decodeDynamicSegment(currentUrlSegment.path);
                 }
                 else if (!pathSegment.match(currentUrlSegment.path)) {
                     return null;
@@ -154,7 +156,7 @@ export class ParamRoutePath {
     _parsePathString(routePath) {
         // normalize route as not starting with a "/". Recognition will
         // also normalize.
-        if (routePath.startsWith("/")) {
+        if (routePath.startsWith('/')) {
             routePath = routePath.substring(1);
         }
         var segmentStrings = routePath.split('/');

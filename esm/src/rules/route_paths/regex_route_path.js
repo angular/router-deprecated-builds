@@ -1,11 +1,11 @@
-import { RegExpWrapper, RegExpMatcherWrapper, isBlank } from '../../facade/lang';
 import { BaseException } from '@angular/core';
+import { RegExpMatcherWrapper, RegExpWrapper, isBlank } from '../../facade/lang';
 import { MatchedUrl } from './route_path';
 function computeNumberOfRegexGroups(regex) {
     // cleverly compute regex groups by appending an alternative empty matching
     // pattern and match against an empty string, the resulting match still
     // receives all the other groups
-    var test_regex = RegExpWrapper.create(regex + "|");
+    var test_regex = RegExpWrapper.create(regex + '|');
     var matcher = RegExpWrapper.matcher(test_regex, '');
     var match = RegExpMatcherWrapper.next(matcher);
     return match.length;

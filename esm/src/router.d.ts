@@ -1,9 +1,9 @@
-import { Type } from '../src/facade/lang';
 import { Location } from '@angular/common';
-import { RouteRegistry } from './route_registry';
-import { Instruction } from './instruction';
+import { Type } from '../src/facade/lang';
 import { RouterOutlet } from './directives/router_outlet';
+import { Instruction } from './instruction';
 import { RouteDefinition } from './route_config/route_config_impl';
+import { RouteRegistry } from './route_registry';
 /**
  * The `Router` is responsible for mapping URLs to components.
  *

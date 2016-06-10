@@ -10,15 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { PromiseWrapper, EventEmitter, ObservableWrapper } from '../src/facade/async';
-import { Map, StringMapWrapper } from '../src/facade/collection';
-import { isBlank, isPresent, Type } from '../src/facade/lang';
-import { BaseException } from '../src/facade/exceptions';
 import { Location } from '@angular/common';
-import { RouteRegistry, ROUTER_PRIMARY_COMPONENT } from './route_registry';
+import { Inject, Injectable } from '@angular/core';
+import { EventEmitter, ObservableWrapper, PromiseWrapper } from '../src/facade/async';
+import { Map, StringMapWrapper } from '../src/facade/collection';
+import { BaseException } from '../src/facade/exceptions';
+import { Type, isBlank, isPresent } from '../src/facade/lang';
 import { DefaultInstruction } from './instruction';
 import { getCanActivateHook } from './lifecycle/route_lifecycle_reflector';
-import { Injectable, Inject } from '@angular/core';
+import { ROUTER_PRIMARY_COMPONENT, RouteRegistry } from './route_registry';
 let _resolveToTrue = PromiseWrapper.resolve(true);
 let _resolveToFalse = PromiseWrapper.resolve(false);
 /**
@@ -240,11 +240,9 @@ export let Router = class Router {
             if (!result) {
                 return false;
             }
-            return this._routerCanDeactivate(instruction)
-                .then((result) => {
+            return this._routerCanDeactivate(instruction).then((result) => {
                 if (result) {
-                    return this.commit(instruction, _skipLocationChange)
-                        .then((_) => {
+                    return this.commit(instruction, _skipLocationChange).then((_) => {
                         this._emitNavigationFinish(instruction.component);
                         return true;
                     });
@@ -276,8 +274,7 @@ export let Router = class Router {
         if (isBlank(instruction.component)) {
             return _resolveToTrue;
         }
-        return this._outlet.routerCanReuse(instruction.component)
-            .then((result) => {
+        return this._outlet.routerCanReuse(instruction.component).then((result) => {
             instruction.component.reuse = result;
             if (result && isPresent(this._childRouter) && isPresent(instruction.child)) {
                 return this._childRouter._routerCanReuse(instruction.child);
@@ -424,11 +421,9 @@ export let RootRouter = class RootRouter extends Router {
         this._location = location;
         this._locationSub = this._location.subscribe((change) => {
             // we call recognize ourselves
-            this.recognize(change['url'])
-                .then((instruction) => {
+            this.recognize(change['url']).then((instruction) => {
                 if (isPresent(instruction)) {
-                    this.navigateByInstruction(instruction, isPresent(change['pop']))
-                        .then((_) => {
+                    this.navigateByInstruction(instruction, isPresent(change['pop'])).then((_) => {
                         // this is a popstate event; no need to change the URL
                         if (isPresent(change['pop']) && change['type'] != 'hashchange') {
                             return;

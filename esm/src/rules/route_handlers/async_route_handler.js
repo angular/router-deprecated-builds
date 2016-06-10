@@ -1,5 +1,5 @@
 import { isPresent } from '../../facade/lang';
-import { RouteData, BLANK_ROUTE_DATA } from '../../instruction';
+import { BLANK_ROUTE_DATA, RouteData } from '../../instruction';
 export class AsyncRouteHandler {
     constructor(_loader, data = null) {
         this._loader = _loader;

@@ -16,15 +16,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var common_1 = require('@angular/common');
+var core_1 = require('@angular/core');
 var async_1 = require('../src/facade/async');
 var collection_1 = require('../src/facade/collection');
-var lang_1 = require('../src/facade/lang');
 var exceptions_1 = require('../src/facade/exceptions');
-var common_1 = require('@angular/common');
-var route_registry_1 = require('./route_registry');
+var lang_1 = require('../src/facade/lang');
 var instruction_1 = require('./instruction');
 var route_lifecycle_reflector_1 = require('./lifecycle/route_lifecycle_reflector');
-var core_1 = require('@angular/core');
+var route_registry_1 = require('./route_registry');
 var _resolveToTrue = async_1.PromiseWrapper.resolve(true);
 var _resolveToFalse = async_1.PromiseWrapper.resolve(false);
 /**
@@ -253,11 +253,9 @@ var Router = (function () {
             if (!result) {
                 return false;
             }
-            return _this._routerCanDeactivate(instruction)
-                .then(function (result) {
+            return _this._routerCanDeactivate(instruction).then(function (result) {
                 if (result) {
-                    return _this.commit(instruction, _skipLocationChange)
-                        .then(function (_) {
+                    return _this.commit(instruction, _skipLocationChange).then(function (_) {
                         _this._emitNavigationFinish(instruction.component);
                         return true;
                     });
@@ -291,8 +289,7 @@ var Router = (function () {
         if (lang_1.isBlank(instruction.component)) {
             return _resolveToTrue;
         }
-        return this._outlet.routerCanReuse(instruction.component)
-            .then(function (result) {
+        return this._outlet.routerCanReuse(instruction.component).then(function (result) {
             instruction.component.reuse = result;
             if (result && lang_1.isPresent(_this._childRouter) && lang_1.isPresent(instruction.child)) {
                 return _this._childRouter._routerCanReuse(instruction.child);
@@ -447,11 +444,9 @@ var RootRouter = (function (_super) {
         this._location = location;
         this._locationSub = this._location.subscribe(function (change) {
             // we call recognize ourselves
-            _this.recognize(change['url'])
-                .then(function (instruction) {
+            _this.recognize(change['url']).then(function (instruction) {
                 if (lang_1.isPresent(instruction)) {
-                    _this.navigateByInstruction(instruction, lang_1.isPresent(change['pop']))
-                        .then(function (_) {
+                    _this.navigateByInstruction(instruction, lang_1.isPresent(change['pop'])).then(function (_) {
                         // this is a popstate event; no need to change the URL
                         if (lang_1.isPresent(change['pop']) && change['type'] != 'hashchange') {
                             return;

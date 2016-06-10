@@ -1,9 +1,9 @@
-import { isPresent, isBlank } from '../facade/lang';
-import { BaseException } from '../facade/exceptions';
-import { PromiseWrapper } from '../facade/promise';
 import { Map } from '../facade/collection';
-import { convertUrlParamsToArray } from '../url_parser';
+import { BaseException } from '../facade/exceptions';
+import { isBlank, isPresent } from '../facade/lang';
+import { PromiseWrapper } from '../facade/promise';
 import { ComponentInstruction } from '../instruction';
+import { convertUrlParamsToArray } from '../url_parser';
 // RouteMatch objects hold information about a match between a rule and a URL
 export class RouteMatch {
 }

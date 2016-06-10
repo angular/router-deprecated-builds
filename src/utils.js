@@ -1,6 +1,6 @@
 "use strict";
-var lang_1 = require('../src/facade/lang');
 var collection_1 = require('../src/facade/collection');
+var lang_1 = require('../src/facade/lang');
 var TouchMap = (function () {
     function TouchMap(map) {
         var _this = this;

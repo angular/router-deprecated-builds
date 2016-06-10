@@ -1,6 +1,6 @@
 import { Type } from '../../facade/lang';
-import { RouteHandler } from './route_handler';
 import { RouteData } from '../../instruction';
+import { RouteHandler } from './route_handler';
 export declare class SyncRouteHandler implements RouteHandler {
     componentType: Type;
     data: RouteData;

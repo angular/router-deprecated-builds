@@ -4,5 +4,6 @@ export { AsyncRoute, AuxRoute, Redirect, Route, RouteDefinition } from './route_
  * The `RouteConfig` decorator defines routes for a given component.
  *
  * It takes an array of {@link RouteDefinition}s.
+ * @Annotation
  */
 export declare var RouteConfig: (configs: RouteDefinition[]) => ClassDecorator;

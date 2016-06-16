@@ -36,6 +36,7 @@ exports.routerOnReuse = lifecycle_annotations_impl_2.routerOnReuse;
  * ### Example
  *
  * {@example router/ts/can_activate/can_activate_example.ts region='canActivate' }
+ * @Annotation
  */
 exports.CanActivate = core_private_1.makeDecorator(lifecycle_annotations_impl_1.CanActivate);
 //# sourceMappingURL=lifecycle_annotations.js.map

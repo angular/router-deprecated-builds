@@ -2063,6 +2063,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      * The `RouteConfig` decorator defines routes for a given component.
      *
      * It takes an array of {@link RouteDefinition}s.
+     * @Annotation
      */
     var RouteConfig = makeDecorator(RouteConfigAnnotation);
     /**
@@ -3266,6 +3267,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      * ### Example
      *
      * {@example router/ts/can_activate/can_activate_example.ts region='canActivate' }
+     * @Annotation
      */
     var CanActivate = makeDecorator(CanActivateAnnotation);
     var __decorate$3 = (this && this.__decorate) || function (decorators, target, key, desc) {

@@ -11,6 +11,7 @@ exports.Route = route_config_impl_2.Route;
  * The `RouteConfig` decorator defines routes for a given component.
  *
  * It takes an array of {@link RouteDefinition}s.
+ * @Annotation
  */
 exports.RouteConfig = core_private_1.makeDecorator(route_config_impl_1.RouteConfig);
 //# sourceMappingURL=route_config_decorator.js.map

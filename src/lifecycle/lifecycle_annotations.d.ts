@@ -25,5 +25,6 @@ export { routerCanDeactivate, routerCanReuse, routerOnActivate, routerOnDeactiva
  * ### Example
  *
  * {@example router/ts/can_activate/can_activate_example.ts region='canActivate' }
+ * @Annotation
  */
 export declare var CanActivate: (hook: (next: ComponentInstruction, prev: ComponentInstruction) => Promise<boolean> | boolean) => ClassDecorator;

@@ -14,6 +14,13 @@ var __extends = (this && this.__extends) || function (d, b) {
             (factory((global.ng = global.ng || {}, global.ng.router_deprecated = global.ng.router_deprecated || {}), global.ng.common, global.ng.core, global.Rx, global.Rx, global.Rx.Observable.prototype, global.Rx, global.ng.platformBrowser));
 }(this, function (exports, _angular_common, _angular_core, rxjs_Subject, rxjs_observable_PromiseObservable, rxjs_operator_toPromise, rxjs_Observable, _angular_platformBrowser) {
     'use strict';
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var globalScope;
     if (typeof window === 'undefined') {
         if (typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope) {
@@ -186,6 +193,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function normalizeBlank(obj) {
         return isBlank(obj) ? null : obj;
     }
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var PromiseCompleter = (function () {
         function PromiseCompleter() {
             var _this = this;
@@ -990,6 +1004,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     }());
     var makeDecorator = _angular_core.__core_private__.makeDecorator;
     var reflector = _angular_core.__core_private__.reflector;
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     /* @ts2dart_const */
     var RouteLifecycleHook = (function () {
         function RouteLifecycleHook(name) {
@@ -1598,6 +1619,13 @@ var __extends = (this && this.__extends) || function (d, b) {
             return obj.toString();
         }
     }
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var MatchedUrl = (function () {
         function MatchedUrl(urlPath, urlParams, allParams, auxiliary, rest) {
             this.urlPath = urlPath;
@@ -2147,6 +2175,13 @@ var __extends = (this && this.__extends) || function (d, b) {
             throw new BaseException$1("Component for route \"" + path + "\" is not defined, or is not a class.");
         }
     }
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var __decorate$2 = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -2604,6 +2639,13 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
         }
     }
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var __decorate$1 = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -3148,6 +3190,13 @@ var __extends = (this && this.__extends) || function (d, b) {
             return true;
         });
     }
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -3269,6 +3318,13 @@ var __extends = (this && this.__extends) || function (d, b) {
      * @Annotation
      */
     var CanActivate = makeDecorator(CanActivateAnnotation);
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     var __decorate$3 = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -3440,6 +3496,13 @@ var __extends = (this && this.__extends) || function (d, b) {
         __param$2(3, _angular_core.Attribute('name')),
         __metadata$3('design:paramtypes', [_angular_core.ViewContainerRef, _angular_core.DynamicComponentLoader, exports.Router, String])
     ], exports.RouterOutlet);
+    /**
+     * @license
+     * Copyright Google Inc. All Rights Reserved.
+     *
+     * Use of this source code is governed by an MIT-style license that can be
+     * found in the LICENSE file at https://angular.io/license
+     */
     /**
      * The Platform agnostic ROUTER PROVIDERS
      */

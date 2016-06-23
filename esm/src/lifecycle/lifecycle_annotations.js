@@ -1,6 +1,9 @@
 /**
- * This indirection is needed to free up Component, etc symbols in the public API
- * to be used by the decorator versions of these annotations.
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
  */
 import { makeDecorator } from '../../core_private';
 import { CanActivate as CanActivateAnnotation } from './lifecycle_annotations_impl';

@@ -37,9 +37,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     // Need to declare a new variable for global here since TypeScript
     // exports the original value of the symbol.
     var global$1 = globalScope;
-    /**
-     * @stable
-     */
     var Type$1 = Function;
     function getTypeNameForDebugging(type) {
         if (type['name']) {

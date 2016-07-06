@@ -3322,7 +3322,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      *
      * ### Example
      *
-     * {@example router/ts/can_activate/can_activate_example.ts region='canActivate' }
+     * {@example router_deprecated/ts/can_activate/can_activate_example.ts region='canActivate' }
      * @Annotation
      */
     var CanActivate = makeDecorator(CanActivateAnnotation);

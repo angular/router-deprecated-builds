@@ -82,7 +82,7 @@ var RouterLink = (function () {
     RouterLink = __decorate([
         core_1.Directive({
             selector: '[routerLink]',
-            inputs: ['routeParams: routerLink', 'target: target'],
+            inputs: ['routeParams: routerLink', 'target'],
             host: {
                 '(click)': 'onClick()',
                 '[attr.href]': 'visibleHref',

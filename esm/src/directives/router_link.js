@@ -78,7 +78,7 @@ export let RouterLink = class RouterLink {
 RouterLink = __decorate([
     Directive({
         selector: '[routerLink]',
-        inputs: ['routeParams: routerLink', 'target: target'],
+        inputs: ['routeParams: routerLink', 'target'],
         host: {
             '(click)': 'onClick()',
             '[attr.href]': 'visibleHref',

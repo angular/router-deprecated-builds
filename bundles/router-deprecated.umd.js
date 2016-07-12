@@ -3289,7 +3289,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     exports.RouterLink = __decorate([
         _angular_core.Directive({
             selector: '[routerLink]',
-            inputs: ['routeParams: routerLink', 'target: target'],
+            inputs: ['routeParams: routerLink', 'target'],
             host: {
                 '(click)': 'onClick()',
                 '[attr.href]': 'visibleHref',

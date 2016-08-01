@@ -9,14 +9,12 @@
  * The `RouteConfig` decorator defines routes for a given component.
  *
  * It takes an array of {@link RouteDefinition}s.
- * @ts2dart_const
  */
 export class RouteConfig {
     constructor(configs) {
         this.configs = configs;
     }
 }
-/* @ts2dart_const */
 export class AbstractRoute {
     constructor({ name, useAsDefault, path, regex, regex_group_names, serializer, data }) {
         this.name = name;
@@ -49,7 +47,6 @@ export class AbstractRoute {
  * ])
  * class MyApp {}
  * ```
- * @ts2dart_const
  */
 export class Route extends AbstractRoute {
     constructor({ name, useAsDefault, path, regex, regex_group_names, serializer, data, component }) {
@@ -85,7 +82,6 @@ export class Route extends AbstractRoute {
  * ])
  * class MyApp {}
  * ```
- * @ts2dart_const
  */
 export class AuxRoute extends AbstractRoute {
     constructor({ name, useAsDefault, path, regex, regex_group_names, serializer, data, component }) {
@@ -124,7 +120,6 @@ export class AuxRoute extends AbstractRoute {
  * ])
  * class MyApp {}
  * ```
- * @ts2dart_const
  */
 export class AsyncRoute extends AbstractRoute {
     constructor({ name, useAsDefault, path, regex, regex_group_names, serializer, data, loader }) {
@@ -161,7 +156,6 @@ export class AsyncRoute extends AbstractRoute {
  * ])
  * class MyApp {}
  * ```
- * @ts2dart_const
  */
 export class Redirect extends AbstractRoute {
     constructor({ name, useAsDefault, path, regex, regex_group_names, serializer, data, redirectTo }) {

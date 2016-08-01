@@ -1013,30 +1013,23 @@ var __extends = (this && this.__extends) || function (d, b) {
      * Use of this source code is governed by an MIT-style license that can be
      * found in the LICENSE file at https://angular.io/license
      */
-    /* @ts2dart_const */
     var RouteLifecycleHook = (function () {
         function RouteLifecycleHook(name) {
             this.name = name;
         }
         return RouteLifecycleHook;
     }());
-    /* @ts2dart_const */
     var CanActivateAnnotation = (function () {
         function CanActivateAnnotation(fn) {
             this.fn = fn;
         }
         return CanActivateAnnotation;
     }());
-    var routerCanReuse = 
-    /*@ts2dart_const*/ new RouteLifecycleHook('routerCanReuse');
-    var routerCanDeactivate = 
-    /*@ts2dart_const*/ new RouteLifecycleHook('routerCanDeactivate');
-    var routerOnActivate = 
-    /*@ts2dart_const*/ new RouteLifecycleHook('routerOnActivate');
-    var routerOnReuse = 
-    /*@ts2dart_const*/ new RouteLifecycleHook('routerOnReuse');
-    var routerOnDeactivate = 
-    /*@ts2dart_const*/ new RouteLifecycleHook('routerOnDeactivate');
+    var routerCanReuse = new RouteLifecycleHook('routerCanReuse');
+    var routerCanDeactivate = new RouteLifecycleHook('routerCanDeactivate');
+    var routerOnActivate = new RouteLifecycleHook('routerOnActivate');
+    var routerOnReuse = new RouteLifecycleHook('routerOnReuse');
+    var routerOnDeactivate = new RouteLifecycleHook('routerOnDeactivate');
     function hasLifecycleHook(e, type /** TODO #9100 */) {
         if (!(type instanceof _angular_core.Type))
             return false;
@@ -1063,7 +1056,6 @@ var __extends = (this && this.__extends) || function (d, b) {
      * The `RouteConfig` decorator defines routes for a given component.
      *
      * It takes an array of {@link RouteDefinition}s.
-     * @ts2dart_const
      */
     var RouteConfigAnnotation = (function () {
         function RouteConfigAnnotation(configs) {
@@ -1071,7 +1063,6 @@ var __extends = (this && this.__extends) || function (d, b) {
         }
         return RouteConfigAnnotation;
     }());
-    /* @ts2dart_const */
     var AbstractRoute = (function () {
         function AbstractRoute(_a) {
             var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data;
@@ -1106,7 +1097,6 @@ var __extends = (this && this.__extends) || function (d, b) {
      * ])
      * class MyApp {}
      * ```
-     * @ts2dart_const
      */
     var Route = (function (_super) {
         __extends(Route, _super);
@@ -1145,7 +1135,6 @@ var __extends = (this && this.__extends) || function (d, b) {
      * ])
      * class MyApp {}
      * ```
-     * @ts2dart_const
      */
     var AuxRoute = (function (_super) {
         __extends(AuxRoute, _super);
@@ -1187,7 +1176,6 @@ var __extends = (this && this.__extends) || function (d, b) {
      * ])
      * class MyApp {}
      * ```
-     * @ts2dart_const
      */
     var AsyncRoute = (function (_super) {
         __extends(AsyncRoute, _super);
@@ -1227,7 +1215,6 @@ var __extends = (this && this.__extends) || function (d, b) {
      * ])
      * class MyApp {}
      * ```
-     * @ts2dart_const
      */
     var Redirect = (function (_super) {
         __extends(Redirect, _super);
@@ -2243,8 +2230,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      * bootstrap(AppCmp, [ROUTER_PROVIDERS]);
      * ```
      */
-    var ROUTER_PRIMARY_COMPONENT = 
-    /*@ts2dart_const*/ new _angular_core.OpaqueToken('RouterPrimaryComponent');
+    var ROUTER_PRIMARY_COMPONENT = new _angular_core.OpaqueToken('RouterPrimaryComponent');
     /**
      * The RouteRegistry holds route configurations for each component in an Angular app.
      * It is responsible for creating Instructions from URLs, and generating URLs based on route and
@@ -3516,8 +3502,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      * The Platform agnostic ROUTER PROVIDERS
      */
     var ROUTER_PROVIDERS_COMMON = [
-        exports.RouteRegistry,
-        /* @ts2dart_Provider */ { provide: _angular_common.LocationStrategy, useClass: _angular_common.PathLocationStrategy }, _angular_common.Location, {
+        exports.RouteRegistry, { provide: _angular_common.LocationStrategy, useClass: _angular_common.PathLocationStrategy }, _angular_common.Location, {
             provide: exports.Router,
             useFactory: routerFactory,
             deps: [exports.RouteRegistry, _angular_common.Location, ROUTER_PRIMARY_COMPONENT, _angular_core.ApplicationRef]
@@ -3525,7 +3510,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         {
             provide: ROUTER_PRIMARY_COMPONENT,
             useFactory: routerPrimaryComponentFactory,
-            deps: /*@ts2dart_const*/ ([_angular_core.ApplicationRef])
+            deps: [_angular_core.ApplicationRef]
         }
     ];
     function routerFactory(registry, location, primaryComponent, appRef) {
@@ -3565,8 +3550,7 @@ var __extends = (this && this.__extends) || function (d, b) {
      */
     var ROUTER_PROVIDERS = [
         ROUTER_PROVIDERS_COMMON,
-        /*@ts2dart_const*/ (
-        /* @ts2dart_Provider */ { provide: _angular_common.PlatformLocation, useClass: _angular_platformBrowser.BrowserPlatformLocation }),
+        ({ provide: _angular_common.PlatformLocation, useClass: _angular_platformBrowser.BrowserPlatformLocation }),
     ];
     /**
      * Use {@link ROUTER_PROVIDERS} instead.

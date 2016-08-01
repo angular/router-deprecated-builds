@@ -62,8 +62,7 @@ var _resolveToNull = async_1.PromiseWrapper.resolve(null);
  * bootstrap(AppCmp, [ROUTER_PROVIDERS]);
  * ```
  */
-exports.ROUTER_PRIMARY_COMPONENT = 
-/*@ts2dart_const*/ new core_1.OpaqueToken('RouterPrimaryComponent');
+exports.ROUTER_PRIMARY_COMPONENT = new core_1.OpaqueToken('RouterPrimaryComponent');
 /**
  * The RouteRegistry holds route configurations for each component in an Angular app.
  * It is responsible for creating Instructions from URLs, and generating URLs based on route and

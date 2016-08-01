@@ -15,8 +15,7 @@ var router_1 = require('./router');
  * The Platform agnostic ROUTER PROVIDERS
  */
 exports.ROUTER_PROVIDERS_COMMON = [
-    route_registry_1.RouteRegistry,
-    /* @ts2dart_Provider */ { provide: common_1.LocationStrategy, useClass: common_1.PathLocationStrategy }, common_1.Location, {
+    route_registry_1.RouteRegistry, { provide: common_1.LocationStrategy, useClass: common_1.PathLocationStrategy }, common_1.Location, {
         provide: router_1.Router,
         useFactory: routerFactory,
         deps: [route_registry_1.RouteRegistry, common_1.Location, route_registry_1.ROUTER_PRIMARY_COMPONENT, core_1.ApplicationRef]
@@ -24,7 +23,7 @@ exports.ROUTER_PROVIDERS_COMMON = [
     {
         provide: route_registry_1.ROUTER_PRIMARY_COMPONENT,
         useFactory: routerPrimaryComponentFactory,
-        deps: /*@ts2dart_const*/ ([core_1.ApplicationRef])
+        deps: [core_1.ApplicationRef]
     }
 ];
 function routerFactory(registry, location, primaryComponent, appRef) {

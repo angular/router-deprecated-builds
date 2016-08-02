@@ -17,7 +17,7 @@ export const ROUTER_PROVIDERS_COMMON = [
     RouteRegistry, { provide: LocationStrategy, useClass: PathLocationStrategy }, Location, {
         provide: Router,
         useFactory: routerFactory,
-        deps: [RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT, ApplicationRef]
+        deps: [RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT]
     },
     {
         provide: ROUTER_PRIMARY_COMPONENT,
@@ -25,10 +25,8 @@ export const ROUTER_PROVIDERS_COMMON = [
         deps: [ApplicationRef]
     }
 ];
-function routerFactory(registry, location, primaryComponent, appRef) {
-    var rootRouter = new RootRouter(registry, location, primaryComponent);
-    appRef.registerDisposeListener(() => rootRouter.dispose());
-    return rootRouter;
+function routerFactory(registry, location, primaryComponent) {
+    return new RootRouter(registry, location, primaryComponent);
 }
 function routerPrimaryComponentFactory(app) {
     if (app.componentTypes.length == 0) {

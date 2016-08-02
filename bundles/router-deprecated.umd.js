@@ -3132,6 +3132,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             }
             return promise;
         };
+        RootRouter.prototype.ngOnDestroy = function () { this.dispose(); };
         RootRouter.prototype.dispose = function () {
             if (isPresent(this._locationSub)) {
                 ObservableWrapper.dispose(this._locationSub);
@@ -3505,7 +3506,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         exports.RouteRegistry, { provide: _angular_common.LocationStrategy, useClass: _angular_common.PathLocationStrategy }, _angular_common.Location, {
             provide: exports.Router,
             useFactory: routerFactory,
-            deps: [exports.RouteRegistry, _angular_common.Location, ROUTER_PRIMARY_COMPONENT, _angular_core.ApplicationRef]
+            deps: [exports.RouteRegistry, _angular_common.Location, ROUTER_PRIMARY_COMPONENT]
         },
         {
             provide: ROUTER_PRIMARY_COMPONENT,
@@ -3513,10 +3514,8 @@ var __extends = (this && this.__extends) || function (d, b) {
             deps: [_angular_core.ApplicationRef]
         }
     ];
-    function routerFactory(registry, location, primaryComponent, appRef) {
-        var rootRouter = new exports.RootRouter(registry, location, primaryComponent);
-        appRef.registerDisposeListener(function () { return rootRouter.dispose(); });
-        return rootRouter;
+    function routerFactory(registry, location, primaryComponent) {
+        return new exports.RootRouter(registry, location, primaryComponent);
     }
     function routerPrimaryComponentFactory(app) {
         if (app.componentTypes.length == 0) {

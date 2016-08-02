@@ -502,6 +502,7 @@ var RootRouter = (function (_super) {
         }
         return promise;
     };
+    RootRouter.prototype.ngOnDestroy = function () { this.dispose(); };
     RootRouter.prototype.dispose = function () {
         if (lang_1.isPresent(this._locationSub)) {
             async_1.ObservableWrapper.dispose(this._locationSub);

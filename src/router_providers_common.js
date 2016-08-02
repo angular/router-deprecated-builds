@@ -18,7 +18,7 @@ exports.ROUTER_PROVIDERS_COMMON = [
     route_registry_1.RouteRegistry, { provide: common_1.LocationStrategy, useClass: common_1.PathLocationStrategy }, common_1.Location, {
         provide: router_1.Router,
         useFactory: routerFactory,
-        deps: [route_registry_1.RouteRegistry, common_1.Location, route_registry_1.ROUTER_PRIMARY_COMPONENT, core_1.ApplicationRef]
+        deps: [route_registry_1.RouteRegistry, common_1.Location, route_registry_1.ROUTER_PRIMARY_COMPONENT]
     },
     {
         provide: route_registry_1.ROUTER_PRIMARY_COMPONENT,
@@ -26,10 +26,8 @@ exports.ROUTER_PROVIDERS_COMMON = [
         deps: [core_1.ApplicationRef]
     }
 ];
-function routerFactory(registry, location, primaryComponent, appRef) {
-    var rootRouter = new router_1.RootRouter(registry, location, primaryComponent);
-    appRef.registerDisposeListener(function () { return rootRouter.dispose(); });
-    return rootRouter;
+function routerFactory(registry, location, primaryComponent) {
+    return new router_1.RootRouter(registry, location, primaryComponent);
 }
 function routerPrimaryComponentFactory(app) {
     if (app.componentTypes.length == 0) {

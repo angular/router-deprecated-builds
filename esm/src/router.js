@@ -482,6 +482,7 @@ export let RootRouter = class RootRouter extends Router {
         }
         return promise;
     }
+    ngOnDestroy() { this.dispose(); }
     dispose() {
         if (isPresent(this._locationSub)) {
             ObservableWrapper.dispose(this._locationSub);

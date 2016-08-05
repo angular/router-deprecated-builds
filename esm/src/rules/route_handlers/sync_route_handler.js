@@ -5,7 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { PromiseWrapper } from '../../facade/async';
 import { isPresent } from '../../facade/lang';
 import { BLANK_ROUTE_DATA, RouteData } from '../../instruction';
 export class SyncRouteHandler {
@@ -13,7 +12,7 @@ export class SyncRouteHandler {
         this.componentType = componentType;
         /** @internal */
         this._resolvedComponent = null;
-        this._resolvedComponent = PromiseWrapper.resolve(componentType);
+        this._resolvedComponent = Promise.resolve(componentType);
         this.data = isPresent(data) ? new RouteData(data) : BLANK_ROUTE_DATA;
     }
     resolveComponentType() { return this._resolvedComponent; }

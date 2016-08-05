@@ -6,7 +6,6 @@
  * found in the LICENSE file at https://angular.io/license
  */
 "use strict";
-var async_1 = require('../facade/async');
 var collection_1 = require('../facade/collection');
 var exceptions_1 = require('../facade/exceptions');
 var lang_1 = require('../facade/lang');
@@ -97,7 +96,7 @@ var RuleSet = (function () {
         });
         // handle cases where we are routing just to an aux route
         if (solutions.length == 0 && lang_1.isPresent(urlParse) && urlParse.auxiliary.length > 0) {
-            return [async_1.PromiseWrapper.resolve(new rules_1.PathMatch(null, null, urlParse.auxiliary))];
+            return [Promise.resolve(new rules_1.PathMatch(null, null, urlParse.auxiliary))];
         }
         return solutions;
     };
@@ -106,7 +105,7 @@ var RuleSet = (function () {
         if (lang_1.isPresent(routeRecognizer)) {
             return [routeRecognizer.recognize(urlParse)];
         }
-        return [async_1.PromiseWrapper.resolve(null)];
+        return [Promise.resolve(null)];
     };
     RuleSet.prototype.hasRoute = function (name) { return this.rulesByName.has(name); };
     RuleSet.prototype.componentLoaded = function (name) {

@@ -18,14 +18,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Attribute, Directive, DynamicComponentLoader, Output, ReflectiveInjector, ViewContainerRef } from '@angular/core';
-import { EventEmitter, PromiseWrapper } from '../facade/async';
+import { EventEmitter } from '../facade/async';
 import { StringMapWrapper } from '../facade/collection';
 import { isBlank, isPresent } from '../facade/lang';
 import { RouteData, RouteParams } from '../instruction';
 import * as hookMod from '../lifecycle/lifecycle_annotations';
 import { hasLifecycleHook } from '../lifecycle/route_lifecycle_reflector';
 import * as routerMod from '../router';
-let _resolveToTrue = PromiseWrapper.resolve(true);
+let _resolveToTrue = Promise.resolve(true);
 /**
  * A router outlet is a placeholder that Angular dynamically fills based on the application's route.
  *
@@ -93,7 +93,7 @@ export let RouterOutlet = class RouterOutlet {
             return this.activate(nextInstruction);
         }
         else {
-            return PromiseWrapper.resolve(hasLifecycleHook(hookMod.routerOnReuse, this._currentInstruction.componentType) ?
+            return Promise.resolve(hasLifecycleHook(hookMod.routerOnReuse, this._currentInstruction.componentType) ?
                 this._componentRef.then((ref) => ref.instance.routerOnReuse(nextInstruction, previousInstruction)) :
                 true);
         }
@@ -161,7 +161,7 @@ export let RouterOutlet = class RouterOutlet {
                 (isPresent(nextInstruction.params) && isPresent(this._currentInstruction.params) &&
                     StringMapWrapper.equals(nextInstruction.params, this._currentInstruction.params));
         }
-        return PromiseWrapper.resolve(result);
+        return Promise.resolve(result);
     }
     ngOnDestroy() { this._parentRouter.unregisterPrimaryOutlet(this); }
 };

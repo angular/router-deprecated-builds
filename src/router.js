@@ -28,8 +28,8 @@ var lang_1 = require('../src/facade/lang');
 var instruction_1 = require('./instruction');
 var route_lifecycle_reflector_1 = require('./lifecycle/route_lifecycle_reflector');
 var route_registry_1 = require('./route_registry');
-var _resolveToTrue = async_1.PromiseWrapper.resolve(true);
-var _resolveToFalse = async_1.PromiseWrapper.resolve(false);
+var _resolveToTrue = Promise.resolve(true);
+var _resolveToFalse = Promise.resolve(false);
 /**
  * The `Router` is responsible for mapping URLs to components.
  *
@@ -243,7 +243,7 @@ var Router = (function () {
             collection_1.StringMapWrapper.forEach(instruction.auxInstruction, function (instruction, _ /** TODO #9100 */) {
                 unsettledInstructions.push(_this._settleInstruction(instruction));
             });
-            return async_1.PromiseWrapper.all(unsettledInstructions);
+            return Promise.all(unsettledInstructions);
         });
     };
     /** @internal */
@@ -267,15 +267,13 @@ var Router = (function () {
         });
     };
     Router.prototype._emitNavigationFinish = function (instruction) {
-        async_1.ObservableWrapper.callEmit(this._subject, { status: 'success', instruction: instruction });
+        this._subject.emit({ status: 'success', instruction: instruction });
     };
     /** @internal */
-    Router.prototype._emitNavigationFail = function (url) {
-        async_1.ObservableWrapper.callEmit(this._subject, { status: 'fail', url: url });
-    };
+    Router.prototype._emitNavigationFail = function (url) { this._subject.emit({ status: 'fail', url: url }); };
     Router.prototype._afterPromiseFinishNavigating = function (promise) {
         var _this = this;
-        return async_1.PromiseWrapper.catchError(promise.then(function (_) { return _this._finishNavigating(); }), function (err) {
+        return promise.then(function () { return _this._finishNavigating(); }).catch(function (err) {
             _this._finishNavigating();
             throw err;
         });
@@ -366,7 +364,7 @@ var Router = (function () {
                 promises.push(router.commit(instruction.auxInstruction[name]));
             }
         });
-        return next.then(function (_) { return async_1.PromiseWrapper.all(promises); });
+        return next.then(function (_) { return Promise.all(promises); });
     };
     /** @internal */
     Router.prototype._startNavigating = function () { this.navigating = true; };
@@ -376,7 +374,7 @@ var Router = (function () {
      * Subscribe to URL updates from the router
      */
     Router.prototype.subscribe = function (onNext, onError) {
-        return async_1.ObservableWrapper.subscribe(this._subject, onNext, onError);
+        return this._subject.subscribe({ next: onNext, error: onError });
     };
     /**
      * Removes the contents of this router's outlet and all descendant outlets
@@ -505,7 +503,7 @@ var RootRouter = (function (_super) {
     RootRouter.prototype.ngOnDestroy = function () { this.dispose(); };
     RootRouter.prototype.dispose = function () {
         if (lang_1.isPresent(this._locationSub)) {
-            async_1.ObservableWrapper.dispose(this._locationSub);
+            this._locationSub.unsubscribe();
             this._locationSub = null;
         }
     };

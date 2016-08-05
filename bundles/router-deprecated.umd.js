@@ -149,55 +149,6 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         return StringWrapper;
     }());
-    var RegExpWrapper = (function () {
-        function RegExpWrapper() {
-        }
-        RegExpWrapper.create = function (regExpStr, flags) {
-            if (flags === void 0) { flags = ''; }
-            flags = flags.replace(/g/g, '');
-            return new global$1.RegExp(regExpStr, flags + 'g');
-        };
-        RegExpWrapper.firstMatch = function (regExp, input) {
-            // Reset multimatch regex state
-            regExp.lastIndex = 0;
-            return regExp.exec(input);
-        };
-        RegExpWrapper.test = function (regExp, input) {
-            regExp.lastIndex = 0;
-            return regExp.test(input);
-        };
-        RegExpWrapper.matcher = function (regExp, input) {
-            // Reset regex state for the case
-            // someone did not loop over all matches
-            // last time.
-            regExp.lastIndex = 0;
-            return { re: regExp, input: input };
-        };
-        RegExpWrapper.replaceAll = function (regExp, input, replace) {
-            var c = regExp.exec(input);
-            var res = '';
-            regExp.lastIndex = 0;
-            var prev = 0;
-            while (c) {
-                res += input.substring(prev, c.index);
-                res += replace(c);
-                prev = c.index + c[0].length;
-                regExp.lastIndex = prev;
-                c = regExp.exec(input);
-            }
-            res += input.substring(prev);
-            return res;
-        };
-        return RegExpWrapper;
-    }());
-    var RegExpMatcherWrapper = (function () {
-        function RegExpMatcherWrapper() {
-        }
-        RegExpMatcherWrapper.next = function (matcher) {
-            return matcher.re.exec(matcher.input);
-        };
-        return RegExpMatcherWrapper;
-    }());
     function normalizeBlank(obj) {
         return isBlank(obj) ? null : obj;
     }
@@ -1302,15 +1253,15 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         return RootUrl;
     }(Url));
-    var SEGMENT_RE = RegExpWrapper.create('^[^\\/\\(\\)\\?;=&#]+');
+    var SEGMENT_RE = /^[^\/\(\)\?;=&#]+/;
     function matchUrlSegment(str) {
-        var match = RegExpWrapper.firstMatch(SEGMENT_RE, str);
-        return isPresent(match) ? match[0] : '';
+        var match = str.match(SEGMENT_RE);
+        return match !== null ? match[0] : '';
     }
-    var QUERY_PARAM_VALUE_RE = RegExpWrapper.create('^[^\\(\\)\\?;&#]+');
+    var QUERY_PARAM_VALUE_RE = /^[^\(\)\?;&#]+/;
     function matchUrlQueryParamValue(str) {
-        var match = RegExpWrapper.firstMatch(QUERY_PARAM_VALUE_RE, str);
-        return isPresent(match) ? match[0] : '';
+        var match = str.match(QUERY_PARAM_VALUE_RE);
+        return match !== null ? match[0] : '';
     }
     var UrlParser = (function () {
         function UrlParser() {
@@ -1688,7 +1639,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         };
         return DynamicPathSegment;
     }());
-    DynamicPathSegment.paramMatcher = /^:([^\/]+)$/g;
+    DynamicPathSegment.paramMatcher = /^:([^\/]+)$/;
     /**
      * Identified by a string starting with `*` Indicates that all the following
      * segments match this route and that the value of these segments should
@@ -1704,7 +1655,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         StarPathSegment.prototype.generate = function (params) { return normalizeString(params.get(this.name)); };
         return StarPathSegment;
     }());
-    StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/g;
+    StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/;
     /**
      * Parses a URL string using a given matcher DSL, and generates URLs from param maps
      */
@@ -1803,10 +1754,10 @@ var __extends = (this && this.__extends) || function (d, b) {
             var limit = segmentStrings.length - 1;
             for (var i = 0; i <= limit; i++) {
                 var segment = segmentStrings[i], match;
-                if (isPresent(match = RegExpWrapper.firstMatch(DynamicPathSegment.paramMatcher, segment))) {
+                if (isPresent(match = segment.match(DynamicPathSegment.paramMatcher))) {
                     this._segments.push(new DynamicPathSegment(match[1]));
                 }
-                else if (isPresent(match = RegExpWrapper.firstMatch(StarPathSegment.wildcardMatcher, segment))) {
+                else if (isPresent(match = segment.match(StarPathSegment.wildcardMatcher))) {
                     this._segments.push(new StarPathSegment(match[1]));
                 }
                 else if (segment == '...') {
@@ -1859,14 +1810,14 @@ var __extends = (this && this.__extends) || function (d, b) {
             if (StringWrapper.contains(path, '#')) {
                 throw new BaseException$1("Path \"" + path + "\" should not include \"#\". Use \"HashLocationStrategy\" instead.");
             }
-            var illegalCharacter = RegExpWrapper.firstMatch(ParamRoutePath.RESERVED_CHARS, path);
+            var illegalCharacter = path.match(ParamRoutePath.RESERVED_CHARS);
             if (isPresent(illegalCharacter)) {
                 throw new BaseException$1("Path \"" + path + "\" contains \"" + illegalCharacter[0] + "\" which is not allowed in a route config.");
             }
         };
         return ParamRoutePath;
     }());
-    ParamRoutePath.RESERVED_CHARS = RegExpWrapper.create('//|\\(|\\)|;|\\?|=');
+    ParamRoutePath.RESERVED_CHARS = new RegExp('//|\\(|\\)|;|\\?|=');
     var REGEXP_PERCENT = /%/g;
     var REGEXP_SLASH = /\//g;
     var REGEXP_OPEN_PARENT = /\(/g;
@@ -1903,10 +1854,8 @@ var __extends = (this && this.__extends) || function (d, b) {
         // cleverly compute regex groups by appending an alternative empty matching
         // pattern and match against an empty string, the resulting match still
         // receives all the other groups
-        var test_regex = RegExpWrapper.create(regex + '|');
-        var matcher = RegExpWrapper.matcher(test_regex, '');
-        var match = RegExpMatcherWrapper.next(matcher);
-        return match.length;
+        var testRegex = new RegExp(regex + '|');
+        return testRegex.exec('').length;
     }
     var RegexRoutePath = (function () {
         function RegexRoutePath(_reString, _serializer, _groupNames) {
@@ -1916,7 +1865,7 @@ var __extends = (this && this.__extends) || function (d, b) {
             this.terminal = true;
             this.specificity = '2';
             this.hash = this._reString;
-            this._regex = RegExpWrapper.create(this._reString);
+            this._regex = new RegExp(this._reString);
             if (this._groupNames != null) {
                 var groups = computeNumberOfRegexGroups(this._reString);
                 if (groups != _groupNames.length) {
@@ -1927,8 +1876,7 @@ var __extends = (this && this.__extends) || function (d, b) {
         RegexRoutePath.prototype.matchUrl = function (url) {
             var urlPath = url.toString();
             var params = {};
-            var matcher = RegExpWrapper.matcher(this._regex, urlPath);
-            var match = RegExpMatcherWrapper.next(matcher);
+            var match = urlPath.match(this._regex);
             if (isBlank(match)) {
                 return null;
             }

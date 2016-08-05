@@ -95,15 +95,15 @@ function pathSegmentsToUrl(pathSegments) {
     return url;
 }
 exports.pathSegmentsToUrl = pathSegmentsToUrl;
-var SEGMENT_RE = lang_1.RegExpWrapper.create('^[^\\/\\(\\)\\?;=&#]+');
+var SEGMENT_RE = /^[^\/\(\)\?;=&#]+/;
 function matchUrlSegment(str) {
-    var match = lang_1.RegExpWrapper.firstMatch(SEGMENT_RE, str);
-    return lang_1.isPresent(match) ? match[0] : '';
+    var match = str.match(SEGMENT_RE);
+    return match !== null ? match[0] : '';
 }
-var QUERY_PARAM_VALUE_RE = lang_1.RegExpWrapper.create('^[^\\(\\)\\?;&#]+');
+var QUERY_PARAM_VALUE_RE = /^[^\(\)\?;&#]+/;
 function matchUrlQueryParamValue(str) {
-    var match = lang_1.RegExpWrapper.firstMatch(QUERY_PARAM_VALUE_RE, str);
-    return lang_1.isPresent(match) ? match[0] : '';
+    var match = str.match(QUERY_PARAM_VALUE_RE);
+    return match !== null ? match[0] : '';
 }
 var UrlParser = (function () {
     function UrlParser() {

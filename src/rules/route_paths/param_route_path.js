@@ -59,7 +59,7 @@ var DynamicPathSegment = (function () {
         }
         return encodeDynamicSegment(utils_1.normalizeString(params.get(this.name)));
     };
-    DynamicPathSegment.paramMatcher = /^:([^\/]+)$/g;
+    DynamicPathSegment.paramMatcher = /^:([^\/]+)$/;
     return DynamicPathSegment;
 }());
 /**
@@ -75,7 +75,7 @@ var StarPathSegment = (function () {
     }
     StarPathSegment.prototype.match = function (path) { return true; };
     StarPathSegment.prototype.generate = function (params) { return utils_1.normalizeString(params.get(this.name)); };
-    StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/g;
+    StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/;
     return StarPathSegment;
 }());
 /**
@@ -176,10 +176,10 @@ var ParamRoutePath = (function () {
         var limit = segmentStrings.length - 1;
         for (var i = 0; i <= limit; i++) {
             var segment = segmentStrings[i], match;
-            if (lang_1.isPresent(match = lang_1.RegExpWrapper.firstMatch(DynamicPathSegment.paramMatcher, segment))) {
+            if (lang_1.isPresent(match = segment.match(DynamicPathSegment.paramMatcher))) {
                 this._segments.push(new DynamicPathSegment(match[1]));
             }
-            else if (lang_1.isPresent(match = lang_1.RegExpWrapper.firstMatch(StarPathSegment.wildcardMatcher, segment))) {
+            else if (lang_1.isPresent(match = segment.match(StarPathSegment.wildcardMatcher))) {
                 this._segments.push(new StarPathSegment(match[1]));
             }
             else if (segment == '...') {
@@ -232,12 +232,12 @@ var ParamRoutePath = (function () {
         if (lang_1.StringWrapper.contains(path, '#')) {
             throw new exceptions_1.BaseException("Path \"" + path + "\" should not include \"#\". Use \"HashLocationStrategy\" instead.");
         }
-        var illegalCharacter = lang_1.RegExpWrapper.firstMatch(ParamRoutePath.RESERVED_CHARS, path);
+        var illegalCharacter = path.match(ParamRoutePath.RESERVED_CHARS);
         if (lang_1.isPresent(illegalCharacter)) {
             throw new exceptions_1.BaseException("Path \"" + path + "\" contains \"" + illegalCharacter[0] + "\" which is not allowed in a route config.");
         }
     };
-    ParamRoutePath.RESERVED_CHARS = lang_1.RegExpWrapper.create('//|\\(|\\)|;|\\?|=');
+    ParamRoutePath.RESERVED_CHARS = new RegExp('//|\\(|\\)|;|\\?|=');
     return ParamRoutePath;
 }());
 exports.ParamRoutePath = ParamRoutePath;

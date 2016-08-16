@@ -35,7 +35,8 @@ var router_providers_common_1 = require('./router_providers_common');
  */
 exports.ROUTER_PROVIDERS = [
     router_providers_common_1.ROUTER_PROVIDERS_COMMON,
-    ({ provide: common_1.PlatformLocation, useClass: platform_browser_1.BrowserPlatformLocation }),
+    /*@ts2dart_const*/ (
+    /* @ts2dart_Provider */ { provide: common_1.PlatformLocation, useClass: platform_browser_1.BrowserPlatformLocation }),
 ];
 /**
  * Use {@link ROUTER_PROVIDERS} instead.

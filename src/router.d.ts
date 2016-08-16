@@ -151,6 +151,5 @@ export declare class Router {
 export declare class RootRouter extends Router {
     constructor(registry: RouteRegistry, location: Location, primaryComponent: Type);
     commit(instruction: Instruction, _skipLocationChange?: boolean): Promise<any>;
-    ngOnDestroy(): void;
     dispose(): void;
 }

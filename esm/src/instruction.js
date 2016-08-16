@@ -5,6 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { PromiseWrapper } from '../src/facade/async';
 import { StringMapWrapper } from '../src/facade/collection';
 import { isBlank, isPresent, normalizeBlank } from '../src/facade/lang';
 /**
@@ -204,7 +205,9 @@ export class ResolvedInstruction extends Instruction {
     constructor(component, child, auxInstruction) {
         super(component, child, auxInstruction);
     }
-    resolveComponent() { return Promise.resolve(this.component); }
+    resolveComponent() {
+        return PromiseWrapper.resolve(this.component);
+    }
 }
 /**
  * Represents a resolved default route
@@ -247,7 +250,7 @@ export class UnresolvedInstruction extends Instruction {
     }
     resolveComponent() {
         if (isPresent(this.component)) {
-            return Promise.resolve(this.component);
+            return PromiseWrapper.resolve(this.component);
         }
         return this._resolver().then((instruction) => {
             this.child = isPresent(instruction) ? instruction.child : null;

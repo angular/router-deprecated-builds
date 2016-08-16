@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 "use strict";
+var async_1 = require('../../facade/async');
 var lang_1 = require('../../facade/lang');
 var instruction_1 = require('../../instruction');
 var SyncRouteHandler = (function () {
@@ -13,7 +14,7 @@ var SyncRouteHandler = (function () {
         this.componentType = componentType;
         /** @internal */
         this._resolvedComponent = null;
-        this._resolvedComponent = Promise.resolve(componentType);
+        this._resolvedComponent = async_1.PromiseWrapper.resolve(componentType);
         this.data = lang_1.isPresent(data) ? new instruction_1.RouteData(data) : instruction_1.BLANK_ROUTE_DATA;
     }
     SyncRouteHandler.prototype.resolveComponentType = function () { return this._resolvedComponent; };

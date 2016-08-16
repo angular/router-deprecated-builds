@@ -14,19 +14,22 @@ import { RootRouter, Router } from './router';
  * The Platform agnostic ROUTER PROVIDERS
  */
 export const ROUTER_PROVIDERS_COMMON = [
-    RouteRegistry, { provide: LocationStrategy, useClass: PathLocationStrategy }, Location, {
+    RouteRegistry,
+    /* @ts2dart_Provider */ { provide: LocationStrategy, useClass: PathLocationStrategy }, Location, {
         provide: Router,
         useFactory: routerFactory,
-        deps: [RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT]
+        deps: [RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT, ApplicationRef]
     },
     {
         provide: ROUTER_PRIMARY_COMPONENT,
         useFactory: routerPrimaryComponentFactory,
-        deps: [ApplicationRef]
+        deps: /*@ts2dart_const*/ ([ApplicationRef])
     }
 ];
-function routerFactory(registry, location, primaryComponent) {
-    return new RootRouter(registry, location, primaryComponent);
+function routerFactory(registry, location, primaryComponent, appRef) {
+    var rootRouter = new RootRouter(registry, location, primaryComponent);
+    appRef.registerDisposeListener(() => rootRouter.dispose());
+    return rootRouter;
 }
 function routerPrimaryComponentFactory(app) {
     if (app.componentTypes.length == 0) {

@@ -8,6 +8,7 @@
 import { Map } from '../facade/collection';
 import { BaseException } from '../facade/exceptions';
 import { isBlank, isPresent } from '../facade/lang';
+import { PromiseWrapper } from '../facade/promise';
 import { ComponentInstruction } from '../instruction';
 import { convertUrlParamsToArray } from '../url_parser';
 // RouteMatch objects hold information about a match between a rule and a URL
@@ -44,7 +45,7 @@ export class RedirectRule {
         if (isPresent(this._pathRecognizer.matchUrl(beginningSegment))) {
             match = new RedirectMatch(this.redirectTo, this._pathRecognizer.specificity);
         }
-        return Promise.resolve(match);
+        return PromiseWrapper.resolve(match);
     }
     generate(params) {
         throw new BaseException(`Tried to generate a redirect.`);

@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var async_1 = require('../src/facade/async');
 var collection_1 = require('../src/facade/collection');
 var lang_1 = require('../src/facade/lang');
 /**
@@ -230,7 +231,9 @@ var ResolvedInstruction = (function (_super) {
     function ResolvedInstruction(component, child, auxInstruction) {
         _super.call(this, component, child, auxInstruction);
     }
-    ResolvedInstruction.prototype.resolveComponent = function () { return Promise.resolve(this.component); };
+    ResolvedInstruction.prototype.resolveComponent = function () {
+        return async_1.PromiseWrapper.resolve(this.component);
+    };
     return ResolvedInstruction;
 }(Instruction));
 exports.ResolvedInstruction = ResolvedInstruction;
@@ -290,7 +293,7 @@ var UnresolvedInstruction = (function (_super) {
     UnresolvedInstruction.prototype.resolveComponent = function () {
         var _this = this;
         if (lang_1.isPresent(this.component)) {
-            return Promise.resolve(this.component);
+            return async_1.PromiseWrapper.resolve(this.component);
         }
         return this._resolver().then(function (instruction) {
             _this.child = lang_1.isPresent(instruction) ? instruction.child : null;

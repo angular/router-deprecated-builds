@@ -11,10 +11,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var __make_dart_analyzer_happy = null;
 /**
  * The `RouteConfig` decorator defines routes for a given component.
  *
  * It takes an array of {@link RouteDefinition}s.
+ * @ts2dart_const
  */
 var RouteConfig = (function () {
     function RouteConfig(configs) {
@@ -23,6 +25,7 @@ var RouteConfig = (function () {
     return RouteConfig;
 }());
 exports.RouteConfig = RouteConfig;
+/* @ts2dart_const */
 var AbstractRoute = (function () {
     function AbstractRoute(_a) {
         var name = _a.name, useAsDefault = _a.useAsDefault, path = _a.path, regex = _a.regex, regex_group_names = _a.regex_group_names, serializer = _a.serializer, data = _a.data;
@@ -58,6 +61,7 @@ exports.AbstractRoute = AbstractRoute;
  * ])
  * class MyApp {}
  * ```
+ * @ts2dart_const
  */
 var Route = (function (_super) {
     __extends(Route, _super);
@@ -97,6 +101,7 @@ exports.Route = Route;
  * ])
  * class MyApp {}
  * ```
+ * @ts2dart_const
  */
 var AuxRoute = (function (_super) {
     __extends(AuxRoute, _super);
@@ -139,6 +144,7 @@ exports.AuxRoute = AuxRoute;
  * ])
  * class MyApp {}
  * ```
+ * @ts2dart_const
  */
 var AsyncRoute = (function (_super) {
     __extends(AsyncRoute, _super);
@@ -179,6 +185,7 @@ exports.AsyncRoute = AsyncRoute;
  * ])
  * class MyApp {}
  * ```
+ * @ts2dart_const
  */
 var Redirect = (function (_super) {
     __extends(Redirect, _super);

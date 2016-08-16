@@ -17,18 +17,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Inject, Injectable, OpaqueToken } from '@angular/core';
-import { reflector } from '../core_private';
+import { PromiseWrapper } from '../src/facade/async';
 import { ListWrapper, Map, StringMapWrapper } from '../src/facade/collection';
+import { isPresent, isArray, isBlank, isType, isString, isStringMap, Type, StringWrapper, Math, getTypeNameForDebugging } from '../src/facade/lang';
 import { BaseException } from '../src/facade/exceptions';
-import { Math, StringWrapper, Type, getTypeNameForDebugging, isArray, isBlank, isPresent, isString, isStringMap, isType } from '../src/facade/lang';
-import { DefaultInstruction, RedirectInstruction, ResolvedInstruction, UnresolvedInstruction } from './instruction';
-import { AuxRoute, Route, RouteConfig } from './route_config/route_config_impl';
-import { assertComponentExists, normalizeRouteConfig } from './route_config/route_config_normalizer';
-import { RuleSet } from './rules/rule_set';
+import { Injectable, Inject, OpaqueToken } from '@angular/core';
+import { RouteConfig, Route, AuxRoute } from './route_config/route_config_impl';
 import { PathMatch, RedirectMatch } from './rules/rules';
-import { convertUrlParamsToArray, parser } from './url_parser';
-var _resolveToNull = Promise.resolve(null);
+import { RuleSet } from './rules/rule_set';
+import { ResolvedInstruction, RedirectInstruction, UnresolvedInstruction, DefaultInstruction } from './instruction';
+import { normalizeRouteConfig, assertComponentExists } from './route_config/route_config_normalizer';
+import { parser, convertUrlParamsToArray } from './url_parser';
+import { reflector } from '../core_private';
+var _resolveToNull = PromiseWrapper.resolve(null);
 // A LinkItemArray is an array, which describes a set of routes
 // The items in the array are found in groups:
 // - the first item is the name of the route
@@ -63,7 +64,8 @@ var _resolveToNull = Promise.resolve(null);
  * bootstrap(AppCmp, [ROUTER_PROVIDERS]);
  * ```
  */
-export const ROUTER_PRIMARY_COMPONENT = new OpaqueToken('RouterPrimaryComponent');
+export const ROUTER_PRIMARY_COMPONENT = 
+/*@ts2dart_const*/ new OpaqueToken('RouterPrimaryComponent');
 /**
  * The RouteRegistry holds route configurations for each component in an Angular app.
  * It is responsible for creating Instructions from URLs, and generating URLs based on route and
@@ -173,9 +175,9 @@ export let RouteRegistry = class RouteRegistry {
             }
         }));
         if ((isBlank(parsedUrl) || parsedUrl.path == '') && possibleMatches.length == 0) {
-            return Promise.resolve(this.generateDefault(parentComponent));
+            return PromiseWrapper.resolve(this.generateDefault(parentComponent));
         }
-        return Promise.all(matchPromises).then(mostSpecific);
+        return PromiseWrapper.all(matchPromises).then(mostSpecific);
     }
     _auxRoutesToUnresolved(auxRoutes, parentInstructions) {
         var unresolvedAuxInstructions = {};

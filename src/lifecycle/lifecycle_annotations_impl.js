@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 "use strict";
+/* @ts2dart_const */
 var RouteLifecycleHook = (function () {
     function RouteLifecycleHook(name) {
         this.name = name;
@@ -13,6 +14,7 @@ var RouteLifecycleHook = (function () {
     return RouteLifecycleHook;
 }());
 exports.RouteLifecycleHook = RouteLifecycleHook;
+/* @ts2dart_const */
 var CanActivate = (function () {
     function CanActivate(fn) {
         this.fn = fn;
@@ -20,9 +22,14 @@ var CanActivate = (function () {
     return CanActivate;
 }());
 exports.CanActivate = CanActivate;
-exports.routerCanReuse = new RouteLifecycleHook('routerCanReuse');
-exports.routerCanDeactivate = new RouteLifecycleHook('routerCanDeactivate');
-exports.routerOnActivate = new RouteLifecycleHook('routerOnActivate');
-exports.routerOnReuse = new RouteLifecycleHook('routerOnReuse');
-exports.routerOnDeactivate = new RouteLifecycleHook('routerOnDeactivate');
+exports.routerCanReuse = 
+/*@ts2dart_const*/ new RouteLifecycleHook('routerCanReuse');
+exports.routerCanDeactivate = 
+/*@ts2dart_const*/ new RouteLifecycleHook('routerCanDeactivate');
+exports.routerOnActivate = 
+/*@ts2dart_const*/ new RouteLifecycleHook('routerOnActivate');
+exports.routerOnReuse = 
+/*@ts2dart_const*/ new RouteLifecycleHook('routerOnReuse');
+exports.routerOnDeactivate = 
+/*@ts2dart_const*/ new RouteLifecycleHook('routerOnDeactivate');
 //# sourceMappingURL=lifecycle_annotations_impl.js.map

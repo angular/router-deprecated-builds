@@ -34,7 +34,8 @@ import { ROUTER_PROVIDERS_COMMON } from './router_providers_common';
  */
 export const ROUTER_PROVIDERS = [
     ROUTER_PROVIDERS_COMMON,
-    ({ provide: PlatformLocation, useClass: BrowserPlatformLocation }),
+    /*@ts2dart_const*/ (
+    /* @ts2dart_Provider */ { provide: PlatformLocation, useClass: BrowserPlatformLocation }),
 ];
 /**
  * Use {@link ROUTER_PROVIDERS} instead.

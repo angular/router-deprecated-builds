@@ -13,8 +13,10 @@ function computeNumberOfRegexGroups(regex) {
     // cleverly compute regex groups by appending an alternative empty matching
     // pattern and match against an empty string, the resulting match still
     // receives all the other groups
-    var testRegex = new RegExp(regex + '|');
-    return testRegex.exec('').length;
+    var test_regex = lang_1.RegExpWrapper.create(regex + '|');
+    var matcher = lang_1.RegExpWrapper.matcher(test_regex, '');
+    var match = lang_1.RegExpMatcherWrapper.next(matcher);
+    return match.length;
 }
 var RegexRoutePath = (function () {
     function RegexRoutePath(_reString, _serializer, _groupNames) {
@@ -24,7 +26,7 @@ var RegexRoutePath = (function () {
         this.terminal = true;
         this.specificity = '2';
         this.hash = this._reString;
-        this._regex = new RegExp(this._reString);
+        this._regex = lang_1.RegExpWrapper.create(this._reString);
         if (this._groupNames != null) {
             var groups = computeNumberOfRegexGroups(this._reString);
             if (groups != _groupNames.length) {
@@ -35,7 +37,8 @@ var RegexRoutePath = (function () {
     RegexRoutePath.prototype.matchUrl = function (url) {
         var urlPath = url.toString();
         var params = {};
-        var match = urlPath.match(this._regex);
+        var matcher = lang_1.RegExpWrapper.matcher(this._regex, urlPath);
+        var match = lang_1.RegExpMatcherWrapper.next(matcher);
         if (lang_1.isBlank(match)) {
             return null;
         }

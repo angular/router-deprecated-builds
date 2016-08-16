@@ -7,7 +7,7 @@
  */
 import { StringMapWrapper } from '../../facade/collection';
 import { BaseException } from '../../facade/exceptions';
-import { StringWrapper, isBlank, isPresent } from '../../facade/lang';
+import { RegExpWrapper, StringWrapper, isBlank, isPresent } from '../../facade/lang';
 import { RootUrl, convertUrlParamsToArray } from '../../url_parser';
 import { TouchMap, normalizeString } from '../../utils';
 import { GeneratedUrl, MatchedUrl } from './route_path';
@@ -57,7 +57,7 @@ class DynamicPathSegment {
         return encodeDynamicSegment(normalizeString(params.get(this.name)));
     }
 }
-DynamicPathSegment.paramMatcher = /^:([^\/]+)$/;
+DynamicPathSegment.paramMatcher = /^:([^\/]+)$/g;
 /**
  * Identified by a string starting with `*` Indicates that all the following
  * segments match this route and that the value of these segments should
@@ -72,7 +72,7 @@ class StarPathSegment {
     match(path) { return true; }
     generate(params) { return normalizeString(params.get(this.name)); }
 }
-StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/;
+StarPathSegment.wildcardMatcher = /^\*([^\/]+)$/g;
 /**
  * Parses a URL string using a given matcher DSL, and generates URLs from param maps
  */
@@ -171,10 +171,10 @@ export class ParamRoutePath {
         var limit = segmentStrings.length - 1;
         for (var i = 0; i <= limit; i++) {
             var segment = segmentStrings[i], match;
-            if (isPresent(match = segment.match(DynamicPathSegment.paramMatcher))) {
+            if (isPresent(match = RegExpWrapper.firstMatch(DynamicPathSegment.paramMatcher, segment))) {
                 this._segments.push(new DynamicPathSegment(match[1]));
             }
-            else if (isPresent(match = segment.match(StarPathSegment.wildcardMatcher))) {
+            else if (isPresent(match = RegExpWrapper.firstMatch(StarPathSegment.wildcardMatcher, segment))) {
                 this._segments.push(new StarPathSegment(match[1]));
             }
             else if (segment == '...') {
@@ -227,13 +227,13 @@ export class ParamRoutePath {
         if (StringWrapper.contains(path, '#')) {
             throw new BaseException(`Path "${path}" should not include "#". Use "HashLocationStrategy" instead.`);
         }
-        const illegalCharacter = path.match(ParamRoutePath.RESERVED_CHARS);
+        var illegalCharacter = RegExpWrapper.firstMatch(ParamRoutePath.RESERVED_CHARS, path);
         if (isPresent(illegalCharacter)) {
             throw new BaseException(`Path "${path}" contains "${illegalCharacter[0]}" which is not allowed in a route config.`);
         }
     }
 }
-ParamRoutePath.RESERVED_CHARS = new RegExp('//|\\(|\\)|;|\\?|=');
+ParamRoutePath.RESERVED_CHARS = RegExpWrapper.create('//|\\(|\\)|;|\\?|=');
 let REGEXP_PERCENT = /%/g;
 let REGEXP_SLASH = /\//g;
 let REGEXP_OPEN_PARENT = /\(/g;

@@ -15,18 +15,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var core_private_1 = require('../core_private');
+var async_1 = require('../src/facade/async');
 var collection_1 = require('../src/facade/collection');
-var exceptions_1 = require('../src/facade/exceptions');
 var lang_1 = require('../src/facade/lang');
-var instruction_1 = require('./instruction');
+var exceptions_1 = require('../src/facade/exceptions');
+var core_1 = require('@angular/core');
 var route_config_impl_1 = require('./route_config/route_config_impl');
-var route_config_normalizer_1 = require('./route_config/route_config_normalizer');
-var rule_set_1 = require('./rules/rule_set');
 var rules_1 = require('./rules/rules');
+var rule_set_1 = require('./rules/rule_set');
+var instruction_1 = require('./instruction');
+var route_config_normalizer_1 = require('./route_config/route_config_normalizer');
 var url_parser_1 = require('./url_parser');
-var _resolveToNull = Promise.resolve(null);
+var core_private_1 = require('../core_private');
+var _resolveToNull = async_1.PromiseWrapper.resolve(null);
 // A LinkItemArray is an array, which describes a set of routes
 // The items in the array are found in groups:
 // - the first item is the name of the route
@@ -61,7 +62,8 @@ var _resolveToNull = Promise.resolve(null);
  * bootstrap(AppCmp, [ROUTER_PROVIDERS]);
  * ```
  */
-exports.ROUTER_PRIMARY_COMPONENT = new core_1.OpaqueToken('RouterPrimaryComponent');
+exports.ROUTER_PRIMARY_COMPONENT = 
+/*@ts2dart_const*/ new core_1.OpaqueToken('RouterPrimaryComponent');
 /**
  * The RouteRegistry holds route configurations for each component in an Angular app.
  * It is responsible for creating Instructions from URLs, and generating URLs based on route and
@@ -174,9 +176,9 @@ var RouteRegistry = (function () {
             }
         }); });
         if ((lang_1.isBlank(parsedUrl) || parsedUrl.path == '') && possibleMatches.length == 0) {
-            return Promise.resolve(this.generateDefault(parentComponent));
+            return async_1.PromiseWrapper.resolve(this.generateDefault(parentComponent));
         }
-        return Promise.all(matchPromises).then(mostSpecific);
+        return async_1.PromiseWrapper.all(matchPromises).then(mostSpecific);
     };
     RouteRegistry.prototype._auxRoutesToUnresolved = function (auxRoutes, parentInstructions) {
         var _this = this;

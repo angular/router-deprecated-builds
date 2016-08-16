@@ -15,19 +15,22 @@ var router_1 = require('./router');
  * The Platform agnostic ROUTER PROVIDERS
  */
 exports.ROUTER_PROVIDERS_COMMON = [
-    route_registry_1.RouteRegistry, { provide: common_1.LocationStrategy, useClass: common_1.PathLocationStrategy }, common_1.Location, {
+    route_registry_1.RouteRegistry,
+    /* @ts2dart_Provider */ { provide: common_1.LocationStrategy, useClass: common_1.PathLocationStrategy }, common_1.Location, {
         provide: router_1.Router,
         useFactory: routerFactory,
-        deps: [route_registry_1.RouteRegistry, common_1.Location, route_registry_1.ROUTER_PRIMARY_COMPONENT]
+        deps: [route_registry_1.RouteRegistry, common_1.Location, route_registry_1.ROUTER_PRIMARY_COMPONENT, core_1.ApplicationRef]
     },
     {
         provide: route_registry_1.ROUTER_PRIMARY_COMPONENT,
         useFactory: routerPrimaryComponentFactory,
-        deps: [core_1.ApplicationRef]
+        deps: /*@ts2dart_const*/ ([core_1.ApplicationRef])
     }
 ];
-function routerFactory(registry, location, primaryComponent) {
-    return new router_1.RootRouter(registry, location, primaryComponent);
+function routerFactory(registry, location, primaryComponent, appRef) {
+    var rootRouter = new router_1.RootRouter(registry, location, primaryComponent);
+    appRef.registerDisposeListener(function () { return rootRouter.dispose(); });
+    return rootRouter;
 }
 function routerPrimaryComponentFactory(app) {
     if (app.componentTypes.length == 0) {

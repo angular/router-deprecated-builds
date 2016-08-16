@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var collection_1 = require('../facade/collection');
 var exceptions_1 = require('../facade/exceptions');
 var lang_1 = require('../facade/lang');
+var promise_1 = require('../facade/promise');
 var instruction_1 = require('../instruction');
 var url_parser_1 = require('../url_parser');
 // RouteMatch objects hold information about a match between a rule and a URL
@@ -64,7 +65,7 @@ var RedirectRule = (function () {
         if (lang_1.isPresent(this._pathRecognizer.matchUrl(beginningSegment))) {
             match = new RedirectMatch(this.redirectTo, this._pathRecognizer.specificity);
         }
-        return Promise.resolve(match);
+        return promise_1.PromiseWrapper.resolve(match);
     };
     RedirectRule.prototype.generate = function (params) {
         throw new exceptions_1.BaseException("Tried to generate a redirect.");

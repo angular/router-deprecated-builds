@@ -1,14 +1,7 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-import { OpaqueToken } from '@angular/core';
 import { Type } from '../src/facade/lang';
-import { Instruction } from './instruction';
+import { OpaqueToken } from '@angular/core';
 import { RouteDefinition } from './route_config/route_config_impl';
+import { Instruction } from './instruction';
 /**
  * Token used to bind the component with the top-level {@link RouteConfig}s for the
  * application.

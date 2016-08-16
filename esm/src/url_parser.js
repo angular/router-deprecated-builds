@@ -7,7 +7,7 @@
  */
 import { StringMapWrapper } from '../src/facade/collection';
 import { BaseException } from '../src/facade/exceptions';
-import { isBlank, isPresent } from '../src/facade/lang';
+import { RegExpWrapper, isBlank, isPresent } from '../src/facade/lang';
 export function convertUrlParamsToArray(urlParams) {
     var paramsArray = [];
     if (isBlank(urlParams)) {
@@ -74,15 +74,15 @@ export function pathSegmentsToUrl(pathSegments) {
     }
     return url;
 }
-const SEGMENT_RE = /^[^\/\(\)\?;=&#]+/;
+var SEGMENT_RE = RegExpWrapper.create('^[^\\/\\(\\)\\?;=&#]+');
 function matchUrlSegment(str) {
-    const match = str.match(SEGMENT_RE);
-    return match !== null ? match[0] : '';
+    var match = RegExpWrapper.firstMatch(SEGMENT_RE, str);
+    return isPresent(match) ? match[0] : '';
 }
-const QUERY_PARAM_VALUE_RE = /^[^\(\)\?;&#]+/;
+var QUERY_PARAM_VALUE_RE = RegExpWrapper.create('^[^\\(\\)\\?;&#]+');
 function matchUrlQueryParamValue(str) {
-    var match = str.match(QUERY_PARAM_VALUE_RE);
-    return match !== null ? match[0] : '';
+    var match = RegExpWrapper.firstMatch(QUERY_PARAM_VALUE_RE, str);
+    return isPresent(match) ? match[0] : '';
 }
 export class UrlParser {
     peekStartsWith(str) { return this._remaining.startsWith(str); }
